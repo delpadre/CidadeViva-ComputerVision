@@ -1,4 +1,4 @@
-# Guia técnico e de integração — componente de Visão (ZeloCidade)
+# Guia técnico e de integração — componente de Visão (CidadeViva)
 
 Para quem vai construir o **MVP** e precisa encaixar a leitura automática de endereço a partir de fotos de faturas.
 Tudo aqui foi verificado contra o código deste repositório; o que **não** foi testado está marcado com ⚠️.
@@ -10,7 +10,7 @@ Tudo aqui foi verificado contra o código deste repositório; o que **não** foi
 - O componente recebe **uma foto de fatura** (luz, água ou telefone) e devolve **o endereço do imóvel**, separado em campos, mais avisos sobre o que está duvidoso.
 - Ele é um **serviço HTTP independente**. O MVP só precisa chamar **um endpoint**: `POST /extract-address`.
 - O MVP deve **mostrar o resultado ao cidadão para confirmar ou corrigir** e só então **salvar o endereço**. O serviço **não grava nada**.
-- No ZeloCidade, o endereço serve para saber **de qual município/bairro** o cidadão é (rotear a solicitação para a prefeitura certa e alimentar indicadores por bairro). O **local do problema reportado** vem de GPS/mapa, **não** da fatura.
+- No CidadeViva, o endereço serve para saber **de qual município/bairro** o cidadão é (rotear a solicitação para a prefeitura certa e alimentar indicadores por bairro). O **local do problema reportado** vem de GPS/mapa, **não** da fatura.
 
 ```
  Celular / navegador                Serviço de Visão (este repo)              Backend do MVP
