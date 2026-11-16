@@ -58,7 +58,7 @@ O endereço da fatura é a **residência** do cidadão; o local do problema repo
 | Métrica | Resultado |
 |---|---|
 | Empresa identificada | 100% |
-| Endereço 100% correto | 98,9% (89/90) |
+| Endereço 100% correto | 100% (90/90) |
 | Falhas silenciosas (errou sem avisar) | 0 |
 | Alarmes falsos (acertou, mas pediu conferência) | 0 |
 | Com a foto reduzida a 2000 px (como a página envia) | 97,8% (88/90) |
