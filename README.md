@@ -1,6 +1,6 @@
-# ZeloCidade Vision — Extração Automática de Endereços
+# CidadeViva Vision — Extração Automática de Endereços
 
-Componente de **Visão Computacional** do MVP **ZeloCidade** (nome provisório; plataforma de zeladoria urbana colaborativa) (Global Solution 2026.2 · Applied Computer Vision).
+Componente de **Visão Computacional** do MVP **CidadeViva** (nome provisório; plataforma de zeladoria urbana colaborativa) (Global Solution 2026.2 · Applied Computer Vision).
 Recebe a **foto de uma fatura**, identifica a empresa, retifica a perspectiva, aplica OCR e devolve o
 **endereço correto** (distinguindo-o de endereços de cobrança e sede) para pré-preencher o cadastro.
 
