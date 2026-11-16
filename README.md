@@ -71,3 +71,5 @@ O endereço da fatura é a **residência** do cidadão; o local do problema repo
 - OCR pode inserir/trocar dígitos (ex.: CEP com dígito extra): o pipeline sinaliza, não "adivinha".
 - Saída em MAIÚSCULAS sem acento (padrão Correios).
 - Documentos escuros ou com fundo claro semelhante ao papel podem falhar na detecção das bordas (há fallback para a imagem inteira).
+
+> 📘 **Vai integrar com o MVP?** Leia o [guia técnico e de integração](docs/INTEGRACAO.md): contrato da API, exemplos de código, banco, CORS, publicação e limitações.
