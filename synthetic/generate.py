@@ -1,9 +1,4 @@
-"""Gera faturas SINTÉTICAS (dados 100% fictícios) + fotos simuladas + gabarito JSON.
 
-Uso: python -m synthetic.generate --n 10 --out data/synthetic --seed 42
-Cada documento gera: <id>_flat.png (folha limpa), <id>.jpg (foto simulada), <id>.json (gabarito).
-Layouts são imitações simplificadas, só para teste; não usam documentos reais.
-"""
 from __future__ import annotations
 
 import argparse
