@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Confirme seu endereço · ZeloCidade</title>
+<title>Confirme seu endereço · CidadeViva</title>
 <style>
   :root{
     --bg:#f6f3ee; --card:#ffffff; --ink:#1d1b20; --muted:#4a4650; --line:#cfc9c0;
@@ -49,7 +49,7 @@
 </style>
 </head>
 <body>
-<header><strong id="appname">ZeloCidade</strong></header>
+<header><strong id="appname">CidadeViva</strong></header>
 <main>
   <h1>Confirme o seu endereço</h1>
   <p>Tire uma foto de uma conta de <b>luz, água ou telefone</b>. Nós lemos o endereço para você. Você só confere.</p>
@@ -223,7 +223,7 @@ $("confirm").addEventListener("click", async ()=>{
     editado_pelo_usuario: lastResult ? JSON.stringify(pick(lastResult.address||{})) !== JSON.stringify(pick(a)) : false,
     confirmado_em: new Date().toISOString()
   };
-  let note = "Neste protótipo o endereço não é salvo. No ZeloCidade ele será guardado no seu cadastro.";
+  let note = "Neste protótipo o endereço não é salvo. No CidadeViva ele será guardado no seu cadastro.";
   if(CONFIRM_URL){
     try{
       const r = await fetch(CONFIRM_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});

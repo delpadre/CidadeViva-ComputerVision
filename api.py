@@ -1,4 +1,4 @@
-"""API de integração com o MVP ZeloCidade. Rodar: uvicorn api:app --reload
+"""API de integração com o MVP CidadeViva. Rodar: uvicorn api:app --reload
 
 POST /extract-address[?lookup_ibge=true]  (multipart, campo 'file')
 GET  /          -> página de confirmação de endereço (web/index.html)
@@ -11,7 +11,7 @@ from fastapi.staticfiles import StaticFiles
 
 from citizen_vision.service import ServiceError, extract_from_bytes
 
-app = FastAPI(title="ZeloCidade Vision - Extração de Endereço", version="1.1")
+app = FastAPI(title="CidadeViva Vision - Extração de Endereço", version="1.1")
 
 
 @app.get("/health")
