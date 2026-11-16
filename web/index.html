@@ -102,142 +102,236 @@
 
 <script>
 "use strict";
-/* ===== Configuração de integração com o MVP ===== */
-const API_URL = "/extract-address";   // serviço de leitura do endereço
-const CONFIRM_URL = null;             // MVP: defina aqui o endpoint que SALVA o endereço confirmado (POST JSON)
-const LOOKUP_IBGE = false;            // true = conferir CEP no ViaCEP e obter código IBGE (requer internet no servidor)
-const TIMEOUT_MS = 60000, MAX_SIDE = 2000;
 
-const FIELDS = ["cep","uf","logradouro","numero","complemento","bairro","cidade"];
-const REQUIRED = ["cep","uf","logradouro","numero","bairro","cidade"];
-const LABEL = {cep:"CEP",uf:"Estado (UF)",logradouro:"Rua",numero:"Número",bairro:"Bairro",cidade:"Cidade",complemento:"Complemento"};
-const UFS = new Set("AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO".split(" "));
-const COMPANY = {enel:"Enel (energia)", sabesp:"Sabesp (água)", claro:"Claro (telecom)"};
+// ---- Configuração ----
+const API_URL = "/extract-address";  // serviço que lê o endereço da foto
+const CONFIRM_URL = null;            // endpoint do MVP que SALVA o endereço (POST JSON). null = só demonstração
+const LOOKUP_IBGE = false;           // true = conferir o CEP no ViaCEP e obter o código IBGE
+const APP_NAME = "CidadeViva";
+const TIMEOUT_MS = 60000;
+const MAX_SIDE = 2000;               // a foto é reduzida no aparelho antes de enviar
+
+const FIELDS = ["cep", "uf", "logradouro", "numero", "complemento", "bairro", "cidade"];
+const REQUIRED = FIELDS.filter(f => f !== "complemento");
+const LABEL = { cep: "CEP", uf: "Estado (UF)", logradouro: "Rua", numero: "Número", bairro: "Bairro", cidade: "Cidade", complemento: "Complemento" };
+const HINT = { cep: "Exemplo: 01310-100", uf: "Exemplo: SP", numero: "Se não tiver número, escreva S/N" };
+const UFS = "AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO".split(" ");
+const EMPRESA = { enel: "Enel (energia)", sabesp: "Sabesp (água)", claro: "Claro (telecom)" };
+
 const $ = id => document.getElementById(id);
-let selectedFile = null, lastResult = null;
+let selectedFile = null;
+let lastResult = null;   // resposta da API (null = endereço digitado à mão)
 
-function setStatus(msg, kind){ const s=$("status"); s.textContent=msg||""; s.className="status "+(kind||""); }
-function focusHeading(id){ const h=$(id); h.scrollIntoView({behavior:"smooth",block:"start"}); h.focus({preventScroll:true}); }
-
-/* Reduz a foto no aparelho (conexão fraca): lado maior <= 2000px. Se falhar, envia o original. */
-async function shrink(file){
-  try{
-    const bmp = await createImageBitmap(file);
-    const k = Math.min(1, MAX_SIDE/Math.max(bmp.width,bmp.height));
-    if(k===1 && file.size < 2.5*1024*1024) return file;
-    const c = document.createElement("canvas"); c.width=Math.round(bmp.width*k); c.height=Math.round(bmp.height*k);
-    c.getContext("2d").drawImage(bmp,0,0,c.width,c.height);
-    return await new Promise(r=>c.toBlob(b=>r(b||file),"image/jpeg",0.9));
-  }catch(e){ return file; }
+function setStatus(msg = "", kind = "") {
+  $("status").textContent = msg;
+  $("status").className = "status " + kind;
 }
 
-$("file").addEventListener("change", e=>{
+function focusOn(id) {
+  const el = $(id);
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+  el.focus({ preventScroll: true });
+}
+
+// ---- Foto ----
+// Reduz a foto (lado maior <= MAX_SIDE) para funcionar com internet lenta. Se falhar, usa a original.
+async function shrink(file) {
+  try {
+    const img = await createImageBitmap(file);
+    const k = Math.min(1, MAX_SIDE / Math.max(img.width, img.height));
+    if (k === 1 && file.size < 2.5 * 1024 * 1024) return file;
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.round(img.width * k);
+    canvas.height = Math.round(img.height * k);
+    canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+    return await new Promise(ok => canvas.toBlob(b => ok(b || file), "image/jpeg", 0.9));
+  } catch {
+    return file;
+  }
+}
+
+$("file").addEventListener("change", e => {
   selectedFile = e.target.files[0] || null;
-  $("read").disabled = !selectedFile; setStatus("");
-  const img=$("preview");
-  if(selectedFile){ img.src=URL.createObjectURL(selectedFile); img.hidden=false; } else img.hidden=true;
+  $("read").disabled = !selectedFile;
+  setStatus();
+  $("preview").hidden = !selectedFile;
+  if (selectedFile) $("preview").src = URL.createObjectURL(selectedFile);
 });
 
-$("read").addEventListener("click", async ()=>{
-  if(!selectedFile) return;
-  if(!navigator.onLine){ setStatus("Sem internet agora. Você pode digitar o endereço.", "err"); return; }
-  $("read").disabled = true; setStatus("Lendo a sua conta… isso leva alguns segundos.");
-  const ctrl = new AbortController(), timer = setTimeout(()=>ctrl.abort(), TIMEOUT_MS);
-  try{
-    const blob = await shrink(selectedFile);
-    const fd = new FormData(); fd.append("file", blob, "conta.jpg");
-    const url = API_URL + (LOOKUP_IBGE ? "?lookup_ibge=true" : "");
-    const resp = await fetch(url, {method:"POST", body:fd, signal:ctrl.signal});
-    if(!resp.ok){ const j = await resp.json().catch(()=>({})); throw new Error(j.detail || ("erro "+resp.status)); }
-    lastResult = await resp.json();
-    setStatus(""); fillForm(lastResult);
-  }catch(err){
-    const msg = err.name==="AbortError" ? "A leitura demorou demais." : "Não foi possível ler a foto ("+err.message+").";
-    setStatus(msg+" Tente outra foto ou digite o endereço.", "err");
-  }finally{ clearTimeout(timer); $("read").disabled = !selectedFile; }
-});
+function messageFor(err) {
+  if (err.name === "TimeoutError") return "A leitura demorou demais.";
+  if (err instanceof TypeError) return "Não conseguimos falar com o servidor de leitura.";   // fetch sem resposta
+  return `Não foi possível ler a foto (${err.message}).`;
+}
 
-$("manual").addEventListener("click", ()=>{ lastResult=null; fillForm(null); });
-$("retry").addEventListener("click", ()=>{ $("step-form").hidden=true; $("step-photo").hidden=false; $("file").value=""; selectedFile=null; $("preview").hidden=true; $("read").disabled=true; setStatus(""); window.scrollTo({top:0,behavior:"smooth"}); });
-$("again").addEventListener("click", ()=>{ $("step-done").hidden=true; $("retry").click(); });
+$("read").addEventListener("click", async () => {
+  if (!selectedFile) return;
+  if (!navigator.onLine) return setStatus("Sem internet agora. Você pode digitar o endereço.", "err");
 
-function fillForm(res){
-  $("step-form").hidden = false; $("step-photo").hidden = true; $("step-done").hidden = true;
-  const addr = (res && res.address) || {}, warns = (res && res.warnings) || [];
-  const missing = REQUIRED.filter(f => !addr[f]);
-  const flagged = (res && Array.isArray(res.fields_to_check)) ? res.fields_to_check : missing;   // ausentes OU suspeitos
-  for(const f of FIELDS){
-    const el=$("f-"+f); el.value = addr[f] || ""; el.removeAttribute("aria-invalid");
-    el.classList.toggle("check", !!res && flagged.includes(f));
-    const h=$("h-"+f); if(h && flagged.includes(f) && res){ h.textContent = addr[f] ? "Confira: este campo pode estar errado." : "Não conseguimos ler. Preencha, por favor."; h.className="hint bad"; }
-    else if(h){ h.className="hint"; if(!["cep","uf","numero"].includes(f)) h.textContent=""; else h.textContent = f==="cep"?"Exemplo: 01310-100":f==="uf"?"Exemplo: SP":"Se não tiver número, escreva S/N"; }
-  }
-  const b=$("banner"), m=$("municipio");
-  if(!res){ b.hidden=true; m.hidden=true; }
-  else if(!res.company){ b.hidden=false; b.className="banner"; b.textContent="Não reconhecemos essa conta. Digite o endereço ou tente outra foto."; m.hidden=true; }
-  else{
-    b.hidden=false;
-    const empresa = COMPANY[res.company] || res.company;
-    if(flagged.length===0 && !warns.some(w=>/CEP não confere|inválid/i.test(w))){
-      b.className="banner good"; b.textContent="Lemos o endereço da sua conta "+empresa+". Confira se está tudo certo.";
-    }else{
-      b.className="banner"; b.innerHTML="Lemos a sua conta "+empresa+", mas <b>precisa conferir</b>:<ul>"+
-        flagged.map(f=>"<li>"+(addr[f] ? "Confira: " : "Falta: ")+LABEL[f]+"</li>").join("")+
-        warns.filter(w=>/CEP não confere/i.test(w)).map(()=>"<li>O CEP não parece combinar com a cidade da conta</li>").join("")+"</ul>";
+  $("read").disabled = true;
+  setStatus("Lendo a sua conta… isso leva alguns segundos.");
+  try {
+    const form = new FormData();
+    form.append("file", await shrink(selectedFile), "conta.jpg");
+    const resp = await fetch(API_URL + (LOOKUP_IBGE ? "?lookup_ibge=true" : ""), {
+      method: "POST", body: form, signal: AbortSignal.timeout(TIMEOUT_MS),
+    });
+    if (!resp.ok) {
+      const erro = await resp.json().catch(() => ({}));
+      throw new Error(erro.detail || "erro " + resp.status);
     }
-    if(res.municipio && res.municipio.municipio){
-      const mu=res.municipio; m.hidden=false;
-      m.textContent="Município identificado: "+mu.municipio+(mu.uf?" - "+mu.uf:"")+(mu.ibge?" (IBGE "+mu.ibge+")":"");
-    } else m.hidden=true;
+    lastResult = await resp.json();
+    setStatus();
+    showForm(lastResult);
+  } catch (err) {
+    setStatus(messageFor(err) + " Tente outra foto ou digite o endereço.", "err");
+  } finally {
+    $("read").disabled = !selectedFile;
   }
-  setTimeout(()=>focusHeading("t-form"), 50);
+});
+
+function restart() {
+  $("step-form").hidden = true;
+  $("step-done").hidden = true;
+  $("step-photo").hidden = false;
+  $("file").value = "";
+  selectedFile = null;
+  $("preview").hidden = true;
+  $("read").disabled = true;
+  setStatus();
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function readForm(){ const o={}; for(const f of FIELDS) o[f]=$("f-"+f).value.trim().replace(/\s+/g," "); return o; }
+$("manual").addEventListener("click", () => { lastResult = null; showForm(null); });
+$("retry").addEventListener("click", restart);
+$("again").addEventListener("click", restart);
 
-function validate(a){
-  const errs={};
-  for(const f of REQUIRED) if(!a[f]) errs[f]="Preencha este campo.";
-  if(a.cep && !/^\d{5}-?\d{3}$/.test(a.cep)) errs.cep="CEP deve ter 8 números. Exemplo: 01310-100";
-  if(a.uf && !UFS.has(a.uf.toUpperCase())) errs.uf="Estado inválido. Use a sigla, como SP.";
-  return errs;
+// ---- Formulário ----
+// Preenche os campos com o que a API leu; res = null abre o formulário vazio (digitação manual).
+function showForm(res) {
+  $("step-photo").hidden = true;
+  $("step-done").hidden = true;
+  $("step-form").hidden = false;
+
+  const addr = res?.address || {};
+  const duvidosos = res ? (res.fields_to_check ?? REQUIRED.filter(f => !addr[f])) : [];   // ausentes ou suspeitos
+
+  for (const f of FIELDS) {
+    const campo = $("f-" + f);
+    const dica = $("h-" + f);
+    const duvida = duvidosos.includes(f);
+    campo.value = addr[f] || "";
+    campo.removeAttribute("aria-invalid");
+    campo.classList.toggle("check", duvida);
+    if (!dica) continue;
+    dica.className = duvida ? "hint bad" : "hint";
+    dica.textContent = duvida
+      ? (addr[f] ? "Confira: este campo pode estar errado." : "Não conseguimos ler. Preencha, por favor.")
+      : HINT[f] || "";
+  }
+
+  showBanner(res, addr, duvidosos);
+  setTimeout(() => focusOn("t-form"), 50);
 }
 
-$("confirm").addEventListener("click", async ()=>{
-  const a = readForm(); a.uf = a.uf.toUpperCase();
-  if(/^\d{8}$/.test(a.cep)) a.cep = a.cep.slice(0,5)+"-"+a.cep.slice(5);
-  const errs = validate(a);
-  for(const f of FIELDS){
-    const el=$("f-"+f), h=$("h-"+f);
-    if(errs[f]){ el.setAttribute("aria-invalid","true"); if(h){h.textContent=errs[f]; h.className="hint bad";} }
-    else el.removeAttribute("aria-invalid");
+function showBanner(res, addr, duvidosos) {
+  const banner = $("banner");
+  const municipio = $("municipio");
+  banner.hidden = !res;
+  municipio.hidden = true;
+  if (!res) return;
+
+  if (!res.company) {
+    banner.className = "banner";
+    banner.textContent = "Não reconhecemos essa conta. Digite o endereço ou tente outra foto.";
+    return;
   }
-  const first = FIELDS.find(f=>errs[f]);
-  if(first){ $("f-"+first).focus(); return; }
+
+  const empresa = EMPRESA[res.company] || res.company;
+  const cepNaoConfere = res.municipio?.confere_cep === false;
+  if (!duvidosos.length && !cepNaoConfere) {
+    banner.className = "banner good";
+    banner.textContent = `Lemos o endereço da sua conta ${empresa}. Confira se está tudo certo.`;
+  } else {
+    const itens = duvidosos.map(f => `<li>${addr[f] ? "Confira" : "Falta"}: ${LABEL[f]}</li>`);
+    if (cepNaoConfere) itens.push("<li>O CEP não parece combinar com a cidade da conta</li>");
+    banner.className = "banner";
+    banner.innerHTML = `Lemos a sua conta ${empresa}, mas <b>precisa conferir</b>:<ul>${itens.join("")}</ul>`;
+  }
+
+  const m = res.municipio;
+  if (m?.municipio) {
+    municipio.hidden = false;
+    municipio.textContent = `Município identificado: ${m.municipio}${m.uf ? " - " + m.uf : ""}${m.ibge ? ` (IBGE ${m.ibge})` : ""}`;
+  }
+}
+
+function lerFormulario() {
+  const dados = {};
+  for (const f of FIELDS) dados[f] = $("f-" + f).value.trim().replace(/\s+/g, " ");
+  dados.uf = dados.uf.toUpperCase();
+  if (/^\d{8}$/.test(dados.cep)) dados.cep = dados.cep.slice(0, 5) + "-" + dados.cep.slice(5);   // 01310100 -> 01310-100
+  return dados;
+}
+
+// Devolve { campo: "mensagem" } para cada campo inválido.
+function validar(a) {
+  const erros = {};
+  for (const f of REQUIRED) if (!a[f]) erros[f] = "Preencha este campo.";
+  if (a.cep && !/^\d{5}-\d{3}$/.test(a.cep)) erros.cep = "CEP deve ter 8 números. Exemplo: 01310-100";
+  if (a.uf && !UFS.includes(a.uf)) erros.uf = "Estado inválido. Use a sigla, como SP.";
+  return erros;
+}
+
+// Compara só os campos principais (ignora complemento) para saber se o cidadão corrigiu algo.
+const principais = o => ["logradouro", "numero", "bairro", "cidade", "uf", "cep"].map(f => (o[f] || "").toUpperCase());
+
+$("confirm").addEventListener("click", async () => {
+  const endereco = lerFormulario();
+  const erros = validar(endereco);
+
+  for (const f of FIELDS) {
+    const campo = $("f-" + f);
+    if (erros[f]) {
+      campo.setAttribute("aria-invalid", "true");
+      $("h-" + f).textContent = erros[f];
+      $("h-" + f).className = "hint bad";
+    } else {
+      campo.removeAttribute("aria-invalid");
+    }
+  }
+  const primeiroErro = FIELDS.find(f => erros[f]);
+  if (primeiroErro) return $("f-" + primeiroErro).focus();
 
   const payload = {
-    endereco: a,
+    endereco,
     origem: lastResult ? "foto" : "manual",
-    empresa: lastResult ? lastResult.company : null,
-    municipio: lastResult ? lastResult.municipio : null,
-    editado_pelo_usuario: lastResult ? JSON.stringify(pick(lastResult.address||{})) !== JSON.stringify(pick(a)) : false,
-    confirmado_em: new Date().toISOString()
+    empresa: lastResult?.company ?? null,
+    municipio: lastResult?.municipio ?? null,
+    editado_pelo_usuario: lastResult ? principais(lastResult.address || {}).join("|") !== principais(endereco).join("|") : false,
+    confirmado_em: new Date().toISOString(),
   };
-  let note = "Neste protótipo o endereço não é salvo. No CidadeViva ele será guardado no seu cadastro.";
-  if(CONFIRM_URL){
-    try{
-      const r = await fetch(CONFIRM_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
-      if(!r.ok) throw new Error(r.status);
-      note = "Endereço salvo no seu cadastro.";
-    }catch(e){ alert("Não conseguimos salvar agora. Tente de novo em instantes."); return; }
+
+  let aviso = `Neste protótipo o endereço não é salvo. No ${APP_NAME} ele será guardado no seu cadastro.`;
+  if (CONFIRM_URL) {
+    try {
+      const r = await fetch(CONFIRM_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+      if (!r.ok) throw new Error(r.status);
+      aviso = "Endereço salvo no seu cadastro.";
+    } catch {
+      return alert("Não conseguimos salvar agora. Tente de novo em instantes.");
+    }
   }
-  document.dispatchEvent(new CustomEvent("endereco-confirmado",{detail:payload}));  // gancho para o MVP
-  $("summary").textContent = a.logradouro+", "+a.numero+(a.complemento?" - "+a.complemento:"")+"\n"+a.bairro+"\n"+a.cidade+" - "+a.uf+"\nCEP "+a.cep;
-  $("done-note").textContent = note;
-  $("payload").textContent = JSON.stringify(payload,null,2);
-  $("step-form").hidden=true; $("step-done").hidden=false; focusHeading("t-done");
+
+  document.dispatchEvent(new CustomEvent("endereco-confirmado", { detail: payload }));   // gancho para o MVP
+  const e = endereco;
+  $("summary").textContent = `${e.logradouro}, ${e.numero}${e.complemento ? " - " + e.complemento : ""}\n${e.bairro}\n${e.cidade} - ${e.uf}\nCEP ${e.cep}`;
+  $("done-note").textContent = aviso;
+  $("payload").textContent = JSON.stringify(payload, null, 2);
+  $("step-form").hidden = true;
+  $("step-done").hidden = false;
+  focusOn("t-done");
 });
-function pick(o){ return {logradouro:o.logradouro||"",numero:o.numero||"",bairro:o.bairro||"",cidade:o.cidade||"",uf:(o.uf||"").toUpperCase(),cep:o.cep||""}; }
 </script>
 </body>
 </html>
