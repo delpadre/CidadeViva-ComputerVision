@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA BRASIL",
+    "numero": "3081",
+    "bairro": "BELA VISTA",
+    "cidade": "BELO HORIZONTE",
+    "uf": "MG",
+    "cep": "18833-776"
+  }
+}

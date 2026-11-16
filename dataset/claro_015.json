@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA DOS PINHEIROS",
+    "numero": "2113",
+    "bairro": "PINHEIROS",
+    "cidade": "CURITIBA",
+    "uf": "PR",
+    "cep": "54737-289"
+  }
+}

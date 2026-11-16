@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": true,
+  "address": {
+    "logradouro": "TRAVESSA DAS FLORES",
+    "numero": "410",
+    "bairro": "LAPA",
+    "cidade": "CURITIBA",
+    "uf": "PR",
+    "cep": "36477-182"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA PAULISTA",
+    "numero": "1048",
+    "bairro": "SANTANA",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "52566-367"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA DOS PINHEIROS",
+    "numero": "494",
+    "bairro": "IPIRANGA",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "46697-571"
+  }
+}

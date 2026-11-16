@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA PAULISTA",
+    "numero": "3663",
+    "bairro": "VILA MARIANA",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "36183-639"
+  }
+}

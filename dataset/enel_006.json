@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DAS ACACIAS",
+    "numero": "1628",
+    "bairro": "CENTRO",
+    "cidade": "CURITIBA",
+    "uf": "PR",
+    "cep": "07259-350"
+  }
+}

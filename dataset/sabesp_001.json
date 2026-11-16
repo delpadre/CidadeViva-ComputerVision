@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DAS ACACIAS",
+    "numero": "3091",
+    "bairro": "MOOCA",
+    "cidade": "BELO HORIZONTE",
+    "uf": "MG",
+    "cep": "55108-569"
+  }
+}

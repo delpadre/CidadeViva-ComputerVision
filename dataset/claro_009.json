@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA DOS PINHEIROS",
+    "numero": "1654",
+    "bairro": "MOOCA",
+    "cidade": "CURITIBA",
+    "uf": "PR",
+    "cep": "69486-507"
+  }
+}

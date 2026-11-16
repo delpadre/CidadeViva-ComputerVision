@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": true,
+  "address": {
+    "logradouro": "ALAMEDA SANTOS",
+    "numero": "2376",
+    "bairro": "IPIRANGA",
+    "cidade": "BELO HORIZONTE",
+    "uf": "MG",
+    "cep": "96725-405"
+  }
+}

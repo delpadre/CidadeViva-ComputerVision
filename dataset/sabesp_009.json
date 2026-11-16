@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DOS ANDRADAS",
+    "numero": "3272",
+    "bairro": "PINHEIROS",
+    "cidade": "RIO DE JANEIRO",
+    "uf": "RJ",
+    "cep": "71479-396"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA CONSELHEIRO NEBIAS",
+    "numero": "3902",
+    "bairro": "SAUDE",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "22077-765"
+  }
+}

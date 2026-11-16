@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": true,
+  "address": {
+    "logradouro": "TRAVESSA DAS FLORES",
+    "numero": "3969",
+    "bairro": "TATUAPE",
+    "cidade": "BELO HORIZONTE",
+    "uf": "MG",
+    "cep": "76404-068"
+  }
+}

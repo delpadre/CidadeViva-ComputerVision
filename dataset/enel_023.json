@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA CONSELHEIRO NEBIAS",
+    "numero": "2726",
+    "bairro": "BOM RETIRO",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "71584-080"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DOS PINHEIROS",
+    "numero": "1021",
+    "bairro": "IPIRANGA",
+    "cidade": "SAO PAULO",
+    "uf": "SP",
+    "cep": "52570-868"
+  }
+}

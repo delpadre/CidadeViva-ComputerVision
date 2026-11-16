@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DAS ACACIAS",
+    "numero": "800",
+    "bairro": "TATUAPE",
+    "cidade": "PORTO ALEGRE",
+    "uf": "RS",
+    "cep": "07780-821"
+  }
+}

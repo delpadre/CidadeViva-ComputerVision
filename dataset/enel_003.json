@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA DO ESTADO",
+    "numero": "2762",
+    "bairro": "SAUDE",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "33731-392"
+  }
+}

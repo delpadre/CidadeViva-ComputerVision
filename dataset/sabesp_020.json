@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": true,
+  "address": {
+    "logradouro": "AVENIDA BRASIL",
+    "numero": "3295",
+    "bairro": "VILA MARIANA",
+    "cidade": "BELO HORIZONTE",
+    "uf": "MG",
+    "cep": "74035-454"
+  }
+}

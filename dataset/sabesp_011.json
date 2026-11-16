@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DOS ANDRADAS",
+    "numero": "3135",
+    "bairro": "SANTANA",
+    "cidade": "RIO DE JANEIRO",
+    "uf": "RJ",
+    "cep": "10257-103"
+  }
+}

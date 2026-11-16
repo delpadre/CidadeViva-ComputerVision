@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA QUINZE DE NOVEMBRO",
+    "numero": "3882",
+    "bairro": "TATUAPE",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "79375-619"
+  }
+}

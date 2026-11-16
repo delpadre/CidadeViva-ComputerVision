@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DAS ACACIAS",
+    "numero": "1020",
+    "bairro": "JARDIM AMERICA",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "17165-076"
+  }
+}

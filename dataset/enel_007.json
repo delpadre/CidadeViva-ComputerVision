@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DAS ACACIAS",
+    "numero": "3659",
+    "bairro": "SANTANA",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "82928-446"
+  }
+}

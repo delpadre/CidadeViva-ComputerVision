@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "ALAMEDA SANTOS",
+    "numero": "2842",
+    "bairro": "TATUAPE",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "14872-938"
+  }
+}

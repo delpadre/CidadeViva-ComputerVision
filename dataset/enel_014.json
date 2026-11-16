@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": true,
+  "address": {
+    "logradouro": "AVENIDA BRASIL",
+    "numero": "44",
+    "bairro": "LAPA",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "12589-435"
+  }
+}

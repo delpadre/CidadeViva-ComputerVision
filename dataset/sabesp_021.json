@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA SETE DE SETEMBRO",
+    "numero": "1298",
+    "bairro": "BOM RETIRO",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "18496-001"
+  }
+}

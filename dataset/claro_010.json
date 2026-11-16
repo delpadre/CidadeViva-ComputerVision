@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DAS ACACIAS",
+    "numero": "3209",
+    "bairro": "SANTANA",
+    "cidade": "CURITIBA",
+    "uf": "PR",
+    "cep": "75537-912"
+  }
+}

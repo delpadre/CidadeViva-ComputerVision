@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA PAULISTA",
+    "numero": "1578",
+    "bairro": "VILA MARIANA",
+    "cidade": "SAO PAULO",
+    "uf": "SP",
+    "cep": "88959-369"
+  }
+}

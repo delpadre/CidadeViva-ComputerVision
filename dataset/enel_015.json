@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA SETE DE SETEMBRO",
+    "numero": "2943",
+    "bairro": "PINHEIROS",
+    "cidade": "CURITIBA",
+    "uf": "PR",
+    "cep": "22442-618"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA SETE DE SETEMBRO",
+    "numero": "2900",
+    "bairro": "LAPA",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "31014-327"
+  }
+}

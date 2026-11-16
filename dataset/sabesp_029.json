@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DOS PINHEIROS",
+    "numero": "2779",
+    "bairro": "SAUDE",
+    "cidade": "RIO DE JANEIRO",
+    "uf": "RJ",
+    "cep": "55680-773"
+  }
+}

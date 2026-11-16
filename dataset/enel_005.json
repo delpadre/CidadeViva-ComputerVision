@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA SETE DE SETEMBRO",
+    "numero": "3233",
+    "bairro": "VILA MARIANA",
+    "cidade": "BELO HORIZONTE",
+    "uf": "MG",
+    "cep": "35708-471"
+  }
+}

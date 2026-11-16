@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA QUINZE DE NOVEMBRO",
+    "numero": "1047",
+    "bairro": "SAUDE",
+    "cidade": "SAO PAULO",
+    "uf": "SP",
+    "cep": "03213-062"
+  }
+}

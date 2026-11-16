@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA CONSELHEIRO NEBIAS",
+    "numero": "1163",
+    "bairro": "SANTANA",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "24067-685"
+  }
+}

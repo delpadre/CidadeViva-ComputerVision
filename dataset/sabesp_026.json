@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA BRASIL",
+    "numero": "2870",
+    "bairro": "TATUAPE",
+    "cidade": "PORTO ALEGRE",
+    "uf": "RS",
+    "cep": "51504-619"
+  }
+}

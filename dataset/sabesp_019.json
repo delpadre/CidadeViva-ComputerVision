@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA PAULISTA",
+    "numero": "1708",
+    "bairro": "PINHEIROS",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "72644-347"
+  }
+}

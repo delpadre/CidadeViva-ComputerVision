@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA DOS PINHEIROS",
+    "numero": "122",
+    "bairro": "CENTRO",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "58246-063"
+  }
+}

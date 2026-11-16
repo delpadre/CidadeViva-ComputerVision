@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "ALAMEDA SANTOS",
+    "numero": "1963",
+    "bairro": "TATUAPE",
+    "cidade": "CURITIBA",
+    "uf": "PR",
+    "cep": "55937-019"
+  }
+}

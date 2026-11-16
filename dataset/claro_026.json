@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "TRAVESSA DAS FLORES",
+    "numero": "1569",
+    "bairro": "BOM RETIRO",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "17572-248"
+  }
+}

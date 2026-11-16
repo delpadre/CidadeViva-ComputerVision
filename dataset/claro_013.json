@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA PAULISTA",
+    "numero": "3509",
+    "bairro": "VILA MARIANA",
+    "cidade": "RIO DE JANEIRO",
+    "uf": "RJ",
+    "cep": "81927-467"
+  }
+}

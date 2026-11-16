@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA DO ESTADO",
+    "numero": "2628",
+    "bairro": "TATUAPE",
+    "cidade": "CURITIBA",
+    "uf": "PR",
+    "cep": "66858-350"
+  }
+}

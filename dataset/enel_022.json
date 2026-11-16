@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA CONSELHEIRO NEBIAS",
+    "numero": "3271",
+    "bairro": "LAPA",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "38009-790"
+  }
+}

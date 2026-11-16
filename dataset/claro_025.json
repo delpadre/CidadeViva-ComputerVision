@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DOS PINHEIROS",
+    "numero": "1453",
+    "bairro": "CENTRO",
+    "cidade": "SAO PAULO",
+    "uf": "SP",
+    "cep": "29064-490"
+  }
+}

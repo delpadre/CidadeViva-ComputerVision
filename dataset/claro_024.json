@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA QUINZE DE NOVEMBRO",
+    "numero": "3126",
+    "bairro": "MOOCA",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "39780-186"
+  }
+}

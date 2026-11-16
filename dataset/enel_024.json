@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA AUGUSTA",
+    "numero": "3793",
+    "bairro": "MOOCA",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "09178-254"
+  }
+}

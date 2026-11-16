@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA QUINZE DE NOVEMBRO",
+    "numero": "156",
+    "bairro": "VILA MARIANA",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "60471-830"
+  }
+}

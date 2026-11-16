@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA QUINZE DE NOVEMBRO",
+    "numero": "2315",
+    "bairro": "JARDIM AMERICA",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "79032-731"
+  }
+}

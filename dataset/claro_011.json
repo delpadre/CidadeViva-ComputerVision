@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA AUGUSTA",
+    "numero": "2407",
+    "bairro": "JARDIM AMERICA",
+    "cidade": "RIO DE JANEIRO",
+    "uf": "RJ",
+    "cep": "70164-659"
+  }
+}

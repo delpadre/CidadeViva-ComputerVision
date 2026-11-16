@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DOS PINHEIROS",
+    "numero": "1309",
+    "bairro": "IPIRANGA",
+    "cidade": "SAO PAULO",
+    "uf": "SP",
+    "cep": "96844-940"
+  }
+}

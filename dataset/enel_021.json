@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA AUGUSTA",
+    "numero": "2007",
+    "bairro": "CENTRO",
+    "cidade": "SAO PAULO",
+    "uf": "SP",
+    "cep": "50937-446"
+  }
+}

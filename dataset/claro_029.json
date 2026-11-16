@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "TRAVESSA DAS FLORES",
+    "numero": "3946",
+    "bairro": "VILA MARIANA",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "49519-429"
+  }
+}

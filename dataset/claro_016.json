@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA PAULISTA",
+    "numero": "3797",
+    "bairro": "BELA VISTA",
+    "cidade": "PORTO ALEGRE",
+    "uf": "RS",
+    "cep": "35075-884"
+  }
+}

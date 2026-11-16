@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA CONSELHEIRO NEBIAS",
+    "numero": "2918",
+    "bairro": "LAPA",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "31156-349"
+  }
+}

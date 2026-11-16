@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA AUGUSTA",
+    "numero": "2814",
+    "bairro": "JARDIM AMERICA",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "43704-994"
+  }
+}

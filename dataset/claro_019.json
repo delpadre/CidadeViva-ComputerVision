@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA AUGUSTA",
+    "numero": "2562",
+    "bairro": "SAUDE",
+    "cidade": "SAO PAULO",
+    "uf": "SP",
+    "cep": "29711-971"
+  }
+}

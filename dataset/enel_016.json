@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA CONSELHEIRO NEBIAS",
+    "numero": "3188",
+    "bairro": "SANTANA",
+    "cidade": "SAO PAULO",
+    "uf": "SP",
+    "cep": "18644-064"
+  }
+}

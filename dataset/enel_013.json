@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA DOS ANDRADAS",
+    "numero": "3080",
+    "bairro": "LAPA",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "51613-646"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA BRASIL",
+    "numero": "396",
+    "bairro": "JARDIM AMERICA",
+    "cidade": "BELO HORIZONTE",
+    "uf": "MG",
+    "cep": "19830-303"
+  }
+}

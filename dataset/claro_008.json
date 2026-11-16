@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA AUGUSTA",
+    "numero": "2092",
+    "bairro": "SANTANA",
+    "cidade": "SAO PAULO",
+    "uf": "SP",
+    "cep": "55106-825"
+  }
+}

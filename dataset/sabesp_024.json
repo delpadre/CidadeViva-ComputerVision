@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA BRASIL",
+    "numero": "359",
+    "bairro": "JARDIM AMERICA",
+    "cidade": "SAO PAULO",
+    "uf": "SP",
+    "cep": "09321-455"
+  }
+}

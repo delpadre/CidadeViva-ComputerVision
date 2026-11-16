@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": true,
+  "address": {
+    "logradouro": "ALAMEDA SANTOS",
+    "numero": "2372",
+    "bairro": "TATUAPE",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "03270-449"
+  }
+}

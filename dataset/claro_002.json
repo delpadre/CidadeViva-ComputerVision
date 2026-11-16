@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA SETE DE SETEMBRO",
+    "numero": "460",
+    "bairro": "CENTRO",
+    "cidade": "BELO HORIZONTE",
+    "uf": "MG",
+    "cep": "91719-546"
+  }
+}

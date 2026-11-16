@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA SETE DE SETEMBRO",
+    "numero": "2681",
+    "bairro": "IPIRANGA",
+    "cidade": "PORTO ALEGRE",
+    "uf": "RS",
+    "cep": "99793-687"
+  }
+}

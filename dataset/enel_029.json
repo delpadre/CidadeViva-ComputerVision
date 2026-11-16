@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA CONSELHEIRO NEBIAS",
+    "numero": "3266",
+    "bairro": "MOOCA",
+    "cidade": "CURITIBA",
+    "uf": "PR",
+    "cep": "75215-488"
+  }
+}

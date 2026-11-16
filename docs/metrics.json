@@ -1,0 +1,54 @@
+{
+  "n_documentos": 90,
+  "acerto_empresa_%": 100.0,
+  "acerto_por_campo_%": {
+    "logradouro": 100.0,
+    "numero": 100.0,
+    "bairro": 98.9,
+    "cidade": 98.9,
+    "uf": 98.9,
+    "cep": 98.9
+  },
+  "endereco_100%_correto_%": 98.9,
+  "por_empresa_%": {
+    "claro": 100.0,
+    "enel": 96.7,
+    "sabesp": 100.0
+  },
+  "por_dificuldade_%": {
+    "easy": 100.0,
+    "hard": 96.6
+  },
+  "falsos_alertas": 0,
+  "falhas_silenciosas": 0,
+  "CER_medio": 0.0061,
+  "tempo_medio_s": 2.22,
+  "falhas": [
+    {
+      "id": "enel_011",
+      "company_pred": "enel",
+      "pred": {
+        "logradouro": "RUA SETE DE SETEMBRO",
+        "numero": "467",
+        "bairro": "CEP 58127-0082",
+        "cidade": "DESCRICAO VALOR (R$)",
+        "uf": "",
+        "cep": ""
+      },
+      "truth": {
+        "logradouro": "RUA SETE DE SETEMBRO",
+        "numero": "467",
+        "bairro": "BELA VISTA",
+        "cidade": "SAO PAULO",
+        "uf": "SP",
+        "cep": "58127-082"
+      },
+      "warnings": [
+        "campo ausente: uf",
+        "campo ausente: cep",
+        "cidade com conteúdo suspeito",
+        "bairro com conteúdo suspeito"
+      ]
+    }
+  ]
+}

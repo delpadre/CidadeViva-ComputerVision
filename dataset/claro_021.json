@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA AUGUSTA",
+    "numero": "2004",
+    "bairro": "CENTRO",
+    "cidade": "RIO DE JANEIRO",
+    "uf": "RJ",
+    "cep": "10265-082"
+  }
+}

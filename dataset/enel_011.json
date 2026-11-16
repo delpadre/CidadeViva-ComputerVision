@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA SETE DE SETEMBRO",
+    "numero": "467",
+    "bairro": "BELA VISTA",
+    "cidade": "SAO PAULO",
+    "uf": "SP",
+    "cep": "58127-082"
+  }
+}

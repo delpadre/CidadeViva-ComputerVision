@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA AUGUSTA",
+    "numero": "3468",
+    "bairro": "SANTANA",
+    "cidade": "PORTO ALEGRE",
+    "uf": "RS",
+    "cep": "88030-334"
+  }
+}

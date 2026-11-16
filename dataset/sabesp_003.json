@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA CONSELHEIRO NEBIAS",
+    "numero": "2645",
+    "bairro": "VILA MARIANA",
+    "cidade": "RIO DE JANEIRO",
+    "uf": "RJ",
+    "cep": "42754-011"
+  }
+}

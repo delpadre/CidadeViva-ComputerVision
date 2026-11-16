@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "TRAVESSA DAS FLORES",
+    "numero": "3555",
+    "bairro": "JARDIM AMERICA",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "53549-180"
+  }
+}

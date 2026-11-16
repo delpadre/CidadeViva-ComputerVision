@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA PAULISTA",
+    "numero": "1280",
+    "bairro": "TATUAPE",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "75622-250"
+  }
+}

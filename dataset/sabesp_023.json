@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA AUGUSTA",
+    "numero": "213",
+    "bairro": "PINHEIROS",
+    "cidade": "CURITIBA",
+    "uf": "PR",
+    "cep": "74115-273"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DOS ANDRADAS",
+    "numero": "2464",
+    "bairro": "JARDIM AMERICA",
+    "cidade": "RIO DE JANEIRO",
+    "uf": "RJ",
+    "cep": "62012-592"
+  }
+}

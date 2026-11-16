@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA DAS ACACIAS",
+    "numero": "1504",
+    "bairro": "SANTANA",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "35781-117"
+  }
+}

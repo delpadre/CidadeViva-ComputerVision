@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": true,
+  "address": {
+    "logradouro": "AVENIDA BRASIL",
+    "numero": "1061",
+    "bairro": "TATUAPE",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "52786-625"
+  }
+}

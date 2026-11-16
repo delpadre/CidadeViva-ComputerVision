@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA CONSELHEIRO NEBIAS",
+    "numero": "534",
+    "bairro": "VILA MARIANA",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "83081-436"
+  }
+}

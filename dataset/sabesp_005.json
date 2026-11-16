@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": true,
+  "address": {
+    "logradouro": "AVENIDA PAULISTA",
+    "numero": "1247",
+    "bairro": "SAUDE",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "12877-922"
+  }
+}

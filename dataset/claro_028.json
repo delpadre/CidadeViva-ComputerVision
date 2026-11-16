@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA CONSELHEIRO NEBIAS",
+    "numero": "1013",
+    "bairro": "LAPA",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "85111-175"
+  }
+}

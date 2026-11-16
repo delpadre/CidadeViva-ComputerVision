@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA PAULISTA",
+    "numero": "2992",
+    "bairro": "BELA VISTA",
+    "cidade": "RIO DE JANEIRO",
+    "uf": "RJ",
+    "cep": "66139-963"
+  }
+}

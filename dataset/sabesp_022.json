@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA BRASIL",
+    "numero": "898",
+    "bairro": "TATUAPE",
+    "cidade": "CURITIBA",
+    "uf": "PR",
+    "cep": "80224-239"
+  }
+}
