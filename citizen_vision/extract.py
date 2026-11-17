@@ -15,8 +15,7 @@ from .config import COMPANIES, DECOY_LABELS, UFS, normalize
 # CONFIGURAÇÕES
 # --------------------------------------------------
 
-# O OCR confunde letras com números nos CEPs. Esta tabela desfaz a confusão:
-# O vira 0, I vira 1, L vira 1, S vira 5, B vira 8.
+
 TROCAS_DIGITOS = str.maketrans({"O": "0", "I": "1", "L": "1", "S": "5", "B": "8"})
 
 # CEP com a palavra "CEP" na frente (aceita letras parecidas com números)
