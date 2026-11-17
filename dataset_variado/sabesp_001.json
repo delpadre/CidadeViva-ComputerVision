@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA DAS MANGUEIRAS",
+    "numero": "6310",
+    "bairro": "JARDIM MIRANTE",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "08479-087"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "PRACA DAS CASCATAS",
+    "numero": "7356",
+    "bairro": "IPIRANGA",
+    "cidade": "LONDRINA",
+    "uf": "PR",
+    "cep": "33566-801"
+  }
+}

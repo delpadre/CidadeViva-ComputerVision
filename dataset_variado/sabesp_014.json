@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": true,
+  "address": {
+    "logradouro": "AVENIDA DA ESPERANCA",
+    "numero": "5308",
+    "bairro": "SANTANA",
+    "cidade": "ARACAJU",
+    "uf": "SE",
+    "cep": "73961-333"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "PRACA TRES DE OUTUBRO",
+    "numero": "5628",
+    "bairro": "BOM RETIRO",
+    "cidade": "CURITIBA",
+    "uf": "PR",
+    "cep": "96609-459"
+  }
+}

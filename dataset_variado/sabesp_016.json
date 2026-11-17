@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DOS TRILHOS",
+    "numero": "6135",
+    "bairro": "RECANTO PRIMAVERA",
+    "cidade": "RIO BRANCO",
+    "uf": "AC",
+    "cep": "66655-410"
+  }
+}

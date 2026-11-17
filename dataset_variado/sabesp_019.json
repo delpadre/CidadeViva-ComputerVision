@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "ALAMEDA DAS CASCATAS",
+    "numero": "3936",
+    "bairro": "VILA LUZ",
+    "cidade": "TERESINA",
+    "uf": "PI",
+    "cep": "21869-376"
+  }
+}

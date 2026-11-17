@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": true,
+  "address": {
+    "logradouro": "ALAMEDA DOS OLIVAIS",
+    "numero": "6577",
+    "bairro": "VILA FLORESTA",
+    "cidade": "FORTALEZA",
+    "uf": "CE",
+    "cep": "15991-039"
+  }
+}

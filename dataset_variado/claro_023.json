@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": true,
+  "address": {
+    "logradouro": "PRACA DA LIBERDADE",
+    "numero": "395",
+    "bairro": "CIDADE AMERICA",
+    "cidade": "RIO DE JANEIRO",
+    "uf": "RJ",
+    "cep": "25558-849"
+  }
+}

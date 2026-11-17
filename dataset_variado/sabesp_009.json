@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": true,
+  "address": {
+    "logradouro": "AVENIDA PRIMEIRO DE MAIO",
+    "numero": "1895",
+    "bairro": "PARQUE NOVA ERA",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "83337-374"
+  }
+}

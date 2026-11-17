@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": true,
+  "address": {
+    "logradouro": "AVENIDA DOS BEIJA FLORES",
+    "numero": "609",
+    "bairro": "RECANTO EUROPA",
+    "cidade": "RIO DE JANEIRO",
+    "uf": "RJ",
+    "cep": "42753-215"
+  }
+}

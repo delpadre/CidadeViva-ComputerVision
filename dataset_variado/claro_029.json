@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "PRACA TRES DE OUTUBRO",
+    "numero": "3478",
+    "bairro": "BOSQUE MIRANTE",
+    "cidade": "JOINVILLE",
+    "uf": "SC",
+    "cep": "82424-927"
+  }
+}

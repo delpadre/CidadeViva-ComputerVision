@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA DA ESTACAO",
+    "numero": "4627",
+    "bairro": "BOM RETIRO",
+    "cidade": "NATAL",
+    "uf": "RN",
+    "cep": "47648-413"
+  }
+}

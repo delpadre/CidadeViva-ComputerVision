@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": true,
+  "address": {
+    "logradouro": "ESTRADA NOVE DE JULHO",
+    "numero": "587",
+    "bairro": "RECANTO HORIZONTE",
+    "cidade": "TERESINA",
+    "uf": "PI",
+    "cep": "82429-102"
+  }
+}

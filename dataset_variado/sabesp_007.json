@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA DOS CAJUEIROS",
+    "numero": "9785",
+    "bairro": "BOSQUE PAULISTA",
+    "cidade": "BRASILIA",
+    "uf": "DF",
+    "cep": "04979-353"
+  }
+}

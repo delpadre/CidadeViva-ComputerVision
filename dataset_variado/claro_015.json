@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "ESTRADA DOS LIRIOS",
+    "numero": "1654",
+    "bairro": "BOSQUE HORIZONTE",
+    "cidade": "BRASILIA",
+    "uf": "DF",
+    "cep": "73440-752"
+  }
+}

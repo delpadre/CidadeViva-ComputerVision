@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": true,
+  "address": {
+    "logradouro": "ESTRADA DAS ESTRELAS",
+    "numero": "2036",
+    "bairro": "CIDADE PRIMAVERA",
+    "cidade": "PALMAS",
+    "uf": "TO",
+    "cep": "60493-442"
+  }
+}

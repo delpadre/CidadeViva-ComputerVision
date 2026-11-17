@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": true,
+  "address": {
+    "logradouro": "AVENIDA DA LUA",
+    "numero": "7",
+    "bairro": "RECANTO PANORAMA",
+    "cidade": "SANTOS",
+    "uf": "SP",
+    "cep": "06767-063"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "TRAVESSA BRASIL",
+    "numero": "5301",
+    "bairro": "PARQUE MIRANTE",
+    "cidade": "TERESINA",
+    "uf": "PI",
+    "cep": "33040-035"
+  }
+}

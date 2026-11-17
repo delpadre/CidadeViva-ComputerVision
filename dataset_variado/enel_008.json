@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "PRACA DA LIBERDADE",
+    "numero": "4751",
+    "bairro": "PARQUE BELA VISTA",
+    "cidade": "MANAUS",
+    "uf": "AM",
+    "cep": "59417-512"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DAS CASCATAS",
+    "numero": "4976",
+    "bairro": "VILA NOVA ERA",
+    "cidade": "CUIABA",
+    "uf": "MT",
+    "cep": "55837-617"
+  }
+}

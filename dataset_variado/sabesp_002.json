@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA TRES DE OUTUBRO",
+    "numero": "2698",
+    "bairro": "CIDADE PANORAMA",
+    "cidade": "NITEROI",
+    "uf": "RJ",
+    "cep": "71718-613"
+  }
+}

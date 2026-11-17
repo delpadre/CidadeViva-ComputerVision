@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "PRACA DAS PALMEIRAS",
+    "numero": "9402",
+    "bairro": "BOSQUE PAULISTA",
+    "cidade": "PORTO VELHO",
+    "uf": "RO",
+    "cep": "88531-241"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "ALAMEDA DA PAZ",
+    "numero": "1747",
+    "bairro": "VILA AMERICA",
+    "cidade": "NITEROI",
+    "uf": "RJ",
+    "cep": "28377-822"
+  }
+}

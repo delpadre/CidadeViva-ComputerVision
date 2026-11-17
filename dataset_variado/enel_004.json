@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DO PROGRESSO",
+    "numero": "7738",
+    "bairro": "PARQUE AMERICA",
+    "cidade": "BELO HORIZONTE",
+    "uf": "MG",
+    "cep": "34970-198"
+  }
+}

@@ -1,6 +1,6 @@
-# CidadeViva Vision — Extração Automática de Endereços
+# ZeloCidade Vision — Extração Automática de Endereços
 
-Componente de **Visão Computacional** do MVP **CidadeViva** (nome provisório; plataforma de zeladoria urbana colaborativa) (Global Solution 2026.2 · Applied Computer Vision).
+Componente de **Visão Computacional** do MVP **ZeloCidade** (nome provisório; plataforma de zeladoria urbana colaborativa) (Global Solution 2026.2 · Applied Computer Vision).
 Recebe a **foto de uma fatura**, identifica a empresa, retifica a perspectiva, aplica OCR e devolve o
 **endereço correto** (distinguindo-o de endereços de cobrança e sede) para pré-preencher o cadastro.
 
@@ -17,6 +17,8 @@ Recebe a **foto de uma fatura**, identifica a empresa, retifica a perspectiva, a
 ## Dados de teste
 A pasta `dataset/` traz as 90 faturas sintéticas usadas na avaliação (30 por empresa): `<id>.jpg` (foto simulada) + `<id>.json` (gabarito). Dados 100% fictícios; reproduzíveis com `python -m synthetic.generate --n 30 --out dataset --seed 99`.
 
+> 📘 **Vai integrar com o MVP?** Leia o [guia técnico e de integração](docs/INTEGRACAO.md): contrato da API, exemplos de código, banco, CORS, publicação e limitações.
+
 ## Pipeline
 `foto → localizar folha + perspectiva → pré-processamento → OCR por linhas → classificar empresa → achar rótulo do endereço correto → parse → validação → JSON`
 
@@ -30,6 +32,10 @@ python demo_server.py        # sem dependências extras  ->  http://localhost:80
 # ou, com FastAPI:  uvicorn api:app --reload
 ```
 
+## Problemas comuns
+- **"Failed to fetch" / "Não conseguimos falar com o servidor"**: o `demo_server.py` não está rodando, ou a página foi aberta direto do arquivo. Abra `http://localhost:8000` com o servidor ligado.
+- **"OCR indisponível no servidor"**: o Tesseract não está instalado ou fora do PATH. Windows: instale o Tesseract (UB Mannheim) marcando *Portuguese* e adicione `C:\\Program Files\\Tesseract-OCR` ao PATH, ou no início do código defina `pytesseract.pytesseract.tesseract_cmd = r"C:\\Program Files\\Tesseract-OCR\\tesseract.exe"`. Reinicie o terminal e o servidor.
+
 ## Como rodar
 ```bash
 sudo apt install tesseract-ocr tesseract-ocr-por     # ou brew install tesseract tesseract-lang
@@ -39,6 +45,7 @@ python -m synthetic.generate --n 30 --out dataset --seed 99   # gera faturas + f
 python evaluate.py --data dataset --report docs/metrics.json  # métricas
 python -m unittest discover -s tests -v                              # testes
 uvicorn api:app --reload                                             # API para o MVP
+python exemplo_passo_a_passo.py                                      # mostra cada etapa do pipeline numa foto
 ```
 Uso em Python: `from citizen_vision import process_image; process_image("foto.jpg").to_dict()`
 
@@ -58,7 +65,7 @@ O endereço da fatura é a **residência** do cidadão; o local do problema repo
 | Métrica | Resultado |
 |---|---|
 | Empresa identificada | 100% |
-| Endereço 100% correto | 100% (90/90) |
+| Endereço 100% correto | 98,9% (89/90) |
 | Falhas silenciosas (errou sem avisar) | 0 |
 | Alarmes falsos (acertou, mas pediu conferência) | 0 |
 | Com a foto reduzida a 2000 px (como a página envia) | 97,8% (88/90) |
@@ -71,5 +78,3 @@ O endereço da fatura é a **residência** do cidadão; o local do problema repo
 - OCR pode inserir/trocar dígitos (ex.: CEP com dígito extra): o pipeline sinaliza, não "adivinha".
 - Saída em MAIÚSCULAS sem acento (padrão Correios).
 - Documentos escuros ou com fundo claro semelhante ao papel podem falhar na detecção das bordas (há fallback para a imagem inteira).
-
-> 📘 **Vai integrar com o MVP?** Leia o [guia técnico e de integração](docs/INTEGRACAO.md): contrato da API, exemplos de código, banco, CORS, publicação e limitações.

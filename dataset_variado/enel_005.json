@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": true,
+  "address": {
+    "logradouro": "PRACA DAS ARARAS",
+    "numero": "7108",
+    "bairro": "SAUDE",
+    "cidade": "GOIANIA",
+    "uf": "GO",
+    "cep": "26533-845"
+  }
+}

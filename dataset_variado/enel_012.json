@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": true,
+  "address": {
+    "logradouro": "TRAVESSA DOS JASMINS",
+    "numero": "6438",
+    "bairro": "PARQUE HORIZONTE",
+    "cidade": "RIO BRANCO",
+    "uf": "AC",
+    "cep": "52139-890"
+  }
+}

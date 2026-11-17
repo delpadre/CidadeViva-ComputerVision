@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "ALAMEDA DAS MANGUEIRAS",
+    "numero": "5120",
+    "bairro": "SAUDE",
+    "cidade": "MANAUS",
+    "uf": "AM",
+    "cep": "96609-614"
+  }
+}

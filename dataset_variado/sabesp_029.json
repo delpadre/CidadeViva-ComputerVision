@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "ESTRADA DOS OLIVAIS",
+    "numero": "1205",
+    "bairro": "PARQUE LUZ",
+    "cidade": "NATAL",
+    "uf": "RN",
+    "cep": "25934-597"
+  }
+}

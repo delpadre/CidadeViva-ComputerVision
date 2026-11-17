@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "ESTRADA DAS GAIVOTAS",
+    "numero": "2408",
+    "bairro": "CIDADE ESPERANCA",
+    "cidade": "BELO HORIZONTE",
+    "uf": "MG",
+    "cep": "87570-592"
+  }
+}

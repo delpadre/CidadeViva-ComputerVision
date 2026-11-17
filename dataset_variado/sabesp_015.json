@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "ALAMEDA DO LAGO",
+    "numero": "7503",
+    "bairro": "PARQUE SANTA CLARA",
+    "cidade": "PALMAS",
+    "uf": "TO",
+    "cep": "38756-740"
+  }
+}

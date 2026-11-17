@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "PRACA DAS ORQUIDEAS",
+    "numero": "6625",
+    "bairro": "VILA MIRANTE",
+    "cidade": "JOINVILLE",
+    "uf": "SC",
+    "cep": "32051-048"
+  }
+}

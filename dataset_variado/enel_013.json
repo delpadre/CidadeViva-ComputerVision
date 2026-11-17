@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA DA LIBERDADE",
+    "numero": "8202",
+    "bairro": "LAPA",
+    "cidade": "ARACAJU",
+    "uf": "SE",
+    "cep": "66152-563"
+  }
+}

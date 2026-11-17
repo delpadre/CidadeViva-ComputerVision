@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": true,
+  "address": {
+    "logradouro": "AVENIDA DOS OLIVAIS",
+    "numero": "7570",
+    "bairro": "PARQUE PRIMAVERA",
+    "cidade": "SANTOS",
+    "uf": "SP",
+    "cep": "85240-906"
+  }
+}

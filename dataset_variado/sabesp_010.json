@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DEZ DE JUNHO",
+    "numero": "4693",
+    "bairro": "VILA ESPERANCA",
+    "cidade": "UBERLANDIA",
+    "uf": "MG",
+    "cep": "25355-368"
+  }
+}

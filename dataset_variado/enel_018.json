@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": true,
+  "address": {
+    "logradouro": "TRAVESSA DA REPUBLICA",
+    "numero": "4266",
+    "bairro": "RECANTO HORIZONTE",
+    "cidade": "RIO DE JANEIRO",
+    "uf": "RJ",
+    "cep": "27108-449"
+  }
+}

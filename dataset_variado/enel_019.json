@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "ESTRADA DAS VIOLETAS",
+    "numero": "3034",
+    "bairro": "PARQUE SOL NASCENTE",
+    "cidade": "BELEM",
+    "uf": "PA",
+    "cep": "82397-319"
+  }
+}

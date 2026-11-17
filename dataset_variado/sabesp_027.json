@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "ESTRADA DO MERCADO",
+    "numero": "2364",
+    "bairro": "RECANTO BELA VISTA",
+    "cidade": "RECIFE",
+    "uf": "PE",
+    "cep": "78111-896"
+  }
+}

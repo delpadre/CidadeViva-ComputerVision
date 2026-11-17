@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "TRAVESSA DEZ DE JUNHO",
+    "numero": "7304",
+    "bairro": "PARQUE AMERICA",
+    "cidade": "MACAPA",
+    "uf": "AP",
+    "cep": "68584-073"
+  }
+}

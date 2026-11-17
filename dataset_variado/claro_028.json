@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DO LAGO",
+    "numero": "5208",
+    "bairro": "BOSQUE SAO JOSE",
+    "cidade": "JOINVILLE",
+    "uf": "SC",
+    "cep": "13836-210"
+  }
+}

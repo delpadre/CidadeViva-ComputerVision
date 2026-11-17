@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "ALAMEDA DOS BEIJA FLORES",
+    "numero": "2889",
+    "bairro": "JARDIM HORIZONTE",
+    "cidade": "BELEM",
+    "uf": "PA",
+    "cep": "81032-448"
+  }
+}

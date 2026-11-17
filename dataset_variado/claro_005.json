@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "PRACA DA REPUBLICA",
+    "numero": "4298",
+    "bairro": "MOOCA",
+    "cidade": "PORTO ALEGRE",
+    "uf": "RS",
+    "cep": "63033-878"
+  }
+}

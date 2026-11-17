@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "TRAVESSA DEZ DE JUNHO",
+    "numero": "4679",
+    "bairro": "CIDADE PANORAMA",
+    "cidade": "BRASILIA",
+    "uf": "DF",
+    "cep": "61904-477"
+  }
+}

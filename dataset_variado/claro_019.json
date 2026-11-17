@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA PRIMEIRO DE MAIO",
+    "numero": "3678",
+    "bairro": "PINHEIROS",
+    "cidade": "MACAPA",
+    "uf": "AP",
+    "cep": "39554-644"
+  }
+}

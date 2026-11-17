@@ -1,17 +1,23 @@
-"""Configuração por empresa (templates) e utilidades de normalização."""
-from __future__ import annotations
+# Configuração de cada empresa e utilidades de texto.
+#
+# Para ADICIONAR uma empresa nova, basta incluí-la em COMPANIES:
+#   keywords -> palavras que só aparecem nas contas dela (usadas para reconhecer a empresa)
+#   anchor   -> o rótulo que vem logo antes do endereço CORRETO (sem acento e em maiúsculas)
+#   layout   -> como o endereço está escrito: "multiline", "street_bairro" ou "inline"
+#               (cada um tem um leitor em extract.py)
 
 import re
 import unicodedata
-from dataclasses import dataclass
 
 
-def normalize(text: str) -> str:
-    """MAIÚSCULAS, sem acentos, espaços e traços unificados (padrão Correios)."""
-    t = unicodedata.normalize("NFKD", text)
-    t = "".join(c for c in t if not unicodedata.combining(c))
-    t = t.replace("–", "-").replace("—", "-").replace("_", " ")
-    return re.sub(r"\s+", " ", t.upper()).strip()
+def normalize(texto):
+    texto = unicodedata.normalize("NFKD", texto)
+    texto = "".join(letra for letra in texto if not unicodedata.combining(letra))   # tira os acentos
+
+    texto = texto.replace("–", "-").replace("—", "-").replace("_", " ")
+    texto = re.sub(r"\s+", " ", texto.upper())
+
+    return texto.strip()
 
 
 UFS = {
@@ -20,32 +26,40 @@ UFS = {
 }
 
 
-@dataclass(frozen=True)
 class Company:
-    key: str
-    display: str
-    keywords: tuple          # palavras que identificam a empresa no texto
-    anchor: str              # rótulo do endereço CORRETO (normalizado)
-    layout: str              # estratégia de parsing: multiline | street_bairro | inline
+    def __init__(self, key, display, keywords, anchor, layout):
+        self.key = key
+        self.display = display
+        self.keywords = keywords
+        self.anchor = anchor
+        self.layout = layout
 
 
 COMPANIES = {
     "enel": Company(
-        "enel", "Enel (energia)",
+        "enel",
+        "Enel (energia)",
         ("ENEL", "ENERGIA ELETRICA", "UNIDADE CONSUMIDORA", "KWH"),
-        "ENDERECO DA UNIDADE CONSUMIDORA", "multiline",
+        "ENDERECO DA UNIDADE CONSUMIDORA",
+        "multiline",
     ),
     "sabesp": Company(
-        "sabesp", "Sabesp (água)",
+        "sabesp",
+        "Sabesp (água)",
         ("SABESP", "AGUA E ESGOTO", "HIDROMETRO", "ESGOTO"),
-        "ENDERECO DO IMOVEL", "street_bairro",
+        "ENDERECO DO IMOVEL",
+        "street_bairro",
     ),
     "claro": Company(
-        "claro", "Claro (telecom)",
+        "claro",
+        "Claro (telecom)",
         ("CLARO", "INTERNET", "FATURA CLARO", "MBPS"),
-        "ENDERECO DE ENTREGA DA FATURA", "inline",
+        "ENDERECO DE ENTREGA DA FATURA",
+        "inline",
     ),
 }
 
-# Rótulos de endereços que NÃO queremos (iscas) — servem como "stop" na coleta.
+
+# Rótulos de endereços que NÃO queremos (cobrança, sede).
+# Servem de "pare": quando a leitura chega num deles, o endereço certo já acabou.
 DECOY_LABELS = ("ENDERECO DE COBRANCA", "ENDERECO DA SEDE", "SEDE")

@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "PRACA DA INDEPENDENCIA",
+    "numero": "8393",
+    "bairro": "BOSQUE NOVA ERA",
+    "cidade": "SANTOS",
+    "uf": "SP",
+    "cep": "09426-115"
+  }
+}

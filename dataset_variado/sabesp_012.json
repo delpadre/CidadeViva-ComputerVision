@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA AMAZONAS",
+    "numero": "7571",
+    "bairro": "VILA PRIMAVERA",
+    "cidade": "GOIANIA",
+    "uf": "GO",
+    "cep": "98855-406"
+  }
+}

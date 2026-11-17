@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA DA REPUBLICA",
+    "numero": "149",
+    "bairro": "RECANTO HORIZONTE",
+    "cidade": "TERESINA",
+    "uf": "PI",
+    "cep": "74155-487"
+  }
+}

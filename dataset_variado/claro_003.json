@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA DAS PALMEIRAS",
+    "numero": "621",
+    "bairro": "JARDIM PRIMAVERA",
+    "cidade": "ARACAJU",
+    "uf": "SE",
+    "cep": "18672-516"
+  }
+}

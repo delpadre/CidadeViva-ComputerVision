@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": true,
+  "address": {
+    "logradouro": "ALAMEDA AMAZONAS",
+    "numero": "8555",
+    "bairro": "CIDADE EUROPA",
+    "cidade": "MACEIO",
+    "uf": "AL",
+    "cep": "06161-844"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "TRAVESSA DOS OLIVAIS",
+    "numero": "7249",
+    "bairro": "IPIRANGA",
+    "cidade": "NITEROI",
+    "uf": "RJ",
+    "cep": "23185-111"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DA ESPERANCA",
+    "numero": "3748",
+    "bairro": "RECANTO CAMPO BELO",
+    "cidade": "VITORIA",
+    "uf": "ES",
+    "cep": "01642-401"
+  }
+}

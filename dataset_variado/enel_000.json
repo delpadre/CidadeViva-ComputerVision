@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA NOVE DE JULHO",
+    "numero": "1543",
+    "bairro": "BOSQUE EUROPA",
+    "cidade": "PORTO ALEGRE",
+    "uf": "RS",
+    "cep": "48931-596"
+  }
+}

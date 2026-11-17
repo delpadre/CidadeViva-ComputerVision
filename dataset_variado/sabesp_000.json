@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "ALAMEDA DA ESTACAO",
+    "numero": "1008",
+    "bairro": "PARQUE HORIZONTE",
+    "cidade": "BOA VISTA",
+    "uf": "RR",
+    "cep": "02744-076"
+  }
+}

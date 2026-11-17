@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA PRIMEIRO DE MAIO",
+    "numero": "7631",
+    "bairro": "MOOCA",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "51661-808"
+  }
+}

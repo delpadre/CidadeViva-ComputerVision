@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "ALAMEDA DA FONTE",
+    "numero": "5215",
+    "bairro": "CIDADE HORIZONTE",
+    "cidade": "PALMAS",
+    "uf": "TO",
+    "cep": "71778-429"
+  }
+}

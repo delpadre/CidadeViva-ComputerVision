@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DAS ARARAS",
+    "numero": "1179",
+    "bairro": "CIDADE SANTA CLARA",
+    "cidade": "CAMPO GRANDE",
+    "uf": "MS",
+    "cep": "79156-509"
+  }
+}

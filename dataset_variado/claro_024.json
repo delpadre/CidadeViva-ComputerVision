@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": true,
+  "address": {
+    "logradouro": "PRACA DA INDEPENDENCIA",
+    "numero": "7238",
+    "bairro": "JARDIM FLORESTA",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "34483-723"
+  }
+}

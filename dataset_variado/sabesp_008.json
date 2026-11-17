@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": true,
+  "address": {
+    "logradouro": "AVENIDA DAS HORTENSIAS",
+    "numero": "4193",
+    "bairro": "VILA PRIMAVERA",
+    "cidade": "CUIABA",
+    "uf": "MT",
+    "cep": "47138-060"
+  }
+}

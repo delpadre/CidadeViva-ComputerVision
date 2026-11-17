@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "ESTRADA DAS MANGUEIRAS",
+    "numero": "2186",
+    "bairro": "VILA MIRANTE",
+    "cidade": "UBERLANDIA",
+    "uf": "MG",
+    "cep": "93761-145"
+  }
+}

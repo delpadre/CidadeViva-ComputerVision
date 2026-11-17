@@ -1,4 +1,9 @@
+"""Gera faturas SINTÉTICAS (dados 100% fictícios) + fotos simuladas + gabarito JSON.
 
+Uso: python -m synthetic.generate --n 10 --out data/synthetic --seed 42
+Cada documento gera: <id>_flat.png (folha limpa), <id>.jpg (foto simulada), <id>.json (gabarito).
+Layouts são imitações simplificadas, só para teste; não usam documentos reais.
+"""
 from __future__ import annotations
 
 import argparse
@@ -24,7 +29,50 @@ CITIES = [("SAO PAULO", "SP"), ("CAMPINAS", "SP"), ("RIO DE JANEIRO", "RJ"),
 COMPLEMENTS = ["APTO 12", "BLOCO B", "CASA 2", "FUNDOS", "SALA 31"]
 
 
-def fake_address(rng: random.Random) -> dict:
+# ---- Modo variado (--varied): nomes COMBINADOS ao acaso, em vez de sorteados de listas prontas ----
+# Tudo é genérico (flores, aves, datas, lugares). Nenhum nome de pessoa e nenhum endereço real.
+TIPOS_DE_VIA = ["RUA", "AVENIDA", "TRAVESSA", "ALAMEDA", "PRACA", "ESTRADA"]
+NOMES_DE_VIA = [
+    "DAS PALMEIRAS", "DOS IPES", "DAS HORTENSIAS", "DAS ORQUIDEAS", "DOS JASMINS", "DAS GAIVOTAS",
+    "DOS SABIAS", "DOS BEIJA FLORES", "DAS ARARAS", "DO SOL", "DA LUA", "DAS ESTRELAS", "DO COMERCIO",
+    "DA LIBERDADE", "DA PAZ", "DA ESPERANCA", "DA REPUBLICA", "DO PROGRESSO", "DA INDEPENDENCIA",
+    "DAS MANGUEIRAS", "DOS CAJUEIROS", "DOS OLIVAIS", "DOS LIRIOS", "DAS VIOLETAS", "DO MERCADO",
+    "DA ESTACAO", "DOS TRILHOS", "DA FONTE", "DO LAGO", "DAS CASCATAS", "PRIMEIRO DE MAIO",
+    "TRES DE OUTUBRO", "VINTE E UM DE ABRIL", "DEZ DE JUNHO", "NOVE DE JULHO", "BRASIL", "AMAZONAS",
+]
+PREFIXOS_DE_BAIRRO = ["JARDIM", "VILA", "PARQUE", "BOSQUE", "RECANTO", "CIDADE"]
+NOMES_DE_BAIRRO = [
+    "AMERICA", "EUROPA", "PAULISTA", "SANTA CLARA", "SAO JOSE", "FLORESTA", "ALVORADA", "PRIMAVERA",
+    "HORIZONTE", "BELA VISTA", "NOVA ERA", "MIRANTE", "CAMPO BELO", "SOL NASCENTE", "ESPERANCA",
+    "PANORAMA", "VERDE", "LUZ",
+]
+BAIRROS_SIMPLES = ["CENTRO", "SAUDE", "LAPA", "MOOCA", "BOM RETIRO", "SANTANA", "IPIRANGA", "PINHEIROS"]
+CIDADES_VARIADAS = [
+    ("RIO BRANCO", "AC"), ("MACEIO", "AL"), ("MACAPA", "AP"), ("MANAUS", "AM"), ("SALVADOR", "BA"),
+    ("FORTALEZA", "CE"), ("BRASILIA", "DF"), ("VITORIA", "ES"), ("GOIANIA", "GO"), ("SAO LUIS", "MA"),
+    ("CUIABA", "MT"), ("CAMPO GRANDE", "MS"), ("BELO HORIZONTE", "MG"), ("BELEM", "PA"),
+    ("JOAO PESSOA", "PB"), ("CURITIBA", "PR"), ("RECIFE", "PE"), ("TERESINA", "PI"),
+    ("RIO DE JANEIRO", "RJ"), ("NATAL", "RN"), ("PORTO ALEGRE", "RS"), ("PORTO VELHO", "RO"),
+    ("BOA VISTA", "RR"), ("FLORIANOPOLIS", "SC"), ("SAO PAULO", "SP"), ("ARACAJU", "SE"),
+    ("PALMAS", "TO"), ("CAMPINAS", "SP"), ("SANTOS", "SP"), ("NITEROI", "RJ"), ("JOINVILLE", "SC"),
+    ("LONDRINA", "PR"), ("UBERLANDIA", "MG"),
+]
+
+
+def varied_address(rng: random.Random) -> dict:
+    cidade, uf = rng.choice(CIDADES_VARIADAS)
+    if rng.random() < 0.15:
+        bairro = rng.choice(BAIRROS_SIMPLES)
+    else:
+        bairro = f"{rng.choice(PREFIXOS_DE_BAIRRO)} {rng.choice(NOMES_DE_BAIRRO)}"
+    return dict(logradouro=f"{rng.choice(TIPOS_DE_VIA)} {rng.choice(NOMES_DE_VIA)}",
+                numero=str(rng.randint(1, 9999)), bairro=bairro, cidade=cidade, uf=uf,
+                cep=f"{rng.randint(1000, 99999):05d}-{rng.randint(0, 999):03d}")
+
+
+def fake_address(rng: random.Random, varied: bool = False) -> dict:
+    if varied:
+        return varied_address(rng)
     city, uf = rng.choice(CITIES)
     return dict(logradouro=rng.choice(STREETS), numero=str(rng.randint(1, 3999)),
                 bairro=rng.choice(BAIRROS), cidade=city, uf=uf,
@@ -78,7 +126,7 @@ TEMPLATES = {
 }
 
 
-def render_flat(company: str, target: dict, rng: random.Random) -> Image.Image:
+def render_flat(company: str, target: dict, rng: random.Random, varied: bool = False) -> Image.Image:
     t = TEMPLATES[company]
     img = Image.new("RGB", (W, H), "white")
     d = ImageDraw.Draw(img)
@@ -88,7 +136,7 @@ def render_flat(company: str, target: dict, rng: random.Random) -> Image.Image:
     d.text((70, 215), t["title"], font=_f(34, True), fill=(20, 20, 20))
     d.text((70, 275), f"CLIENTE TESTE {rng.randint(1, 999):03d}", font=_f(28), fill=(0, 0, 0))
 
-    decoy = fake_address(rng)
+    decoy = fake_address(rng, varied)
     decoy_lines = _lines_for(t["layout"], decoy, rng)
     target_lines = _lines_for(t["layout"], target, rng)
     y = 350
@@ -100,7 +148,7 @@ def render_flat(company: str, target: dict, rng: random.Random) -> Image.Image:
     y = _table(d, y + 20, rng, t["rows"], t["unit"])
     d.text((70, y + 20), f"Vencimento: {rng.randint(1, 28):02d}/12/2026    Total: R$ {rng.randint(80, 900)},{rng.randint(0, 99):02d}",
            font=_f(30, True), fill=(0, 0, 0))
-    sede = fake_address(rng)
+    sede = fake_address(rng, varied)
     d.text((70, H - 120), f"SEDE - {sede['logradouro']}, {sede['numero']} - {sede['cidade']}/{sede['uf']} - CEP {sede['cep']}",
            font=_f(22), fill=(110, 110, 110))
     return img
@@ -141,14 +189,14 @@ def simulate_photo(flat: Image.Image, rng: random.Random, hard: bool = False) ->
     return cv2.GaussianBlur(out, (k, k), 0)
 
 
-def generate(n: int, out_dir: str, seed: int = 42, hard_ratio: float = 0.3) -> int:
+def generate(n: int, out_dir: str, seed: int = 42, hard_ratio: float = 0.3, varied: bool = False) -> int:
     os.makedirs(out_dir, exist_ok=True)
     rng = random.Random(seed)
     count = 0
     for company in TEMPLATES:
         for i in range(n):
-            target = fake_address(rng)
-            flat = render_flat(company, target, rng)
+            target = fake_address(rng, varied)
+            flat = render_flat(company, target, rng, varied)
             hard = rng.random() < hard_ratio
             photo = simulate_photo(flat, rng, hard=hard)
             doc_id = f"{company}_{i:03d}"
@@ -165,5 +213,7 @@ if __name__ == "__main__":
     ap.add_argument("--n", type=int, default=10, help="documentos por empresa")
     ap.add_argument("--out", default="data/synthetic")
     ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument("--varied", action="store_true",
+                    help="combina ruas, bairros e cidades ao acaso (todos os estados) em vez de usar as listas curtas")
     a = ap.parse_args()
-    print(f"{generate(a.n, a.out, a.seed)} documentos gerados em {a.out}")
+    print(f"{generate(a.n, a.out, a.seed, varied=a.varied)} documentos gerados em {a.out}")

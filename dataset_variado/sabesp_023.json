@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": true,
+  "address": {
+    "logradouro": "ESTRADA DA REPUBLICA",
+    "numero": "4031",
+    "bairro": "CIDADE BELA VISTA",
+    "cidade": "BOA VISTA",
+    "uf": "RR",
+    "cep": "11242-141"
+  }
+}

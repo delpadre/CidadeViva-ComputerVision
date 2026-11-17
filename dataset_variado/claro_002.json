@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": true,
+  "address": {
+    "logradouro": "TRAVESSA DA FONTE",
+    "numero": "3963",
+    "bairro": "CENTRO",
+    "cidade": "JOAO PESSOA",
+    "uf": "PB",
+    "cep": "31327-362"
+  }
+}

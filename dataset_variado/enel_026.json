@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA DA ESPERANCA",
+    "numero": "3371",
+    "bairro": "CIDADE CAMPO BELO",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "27628-114"
+  }
+}

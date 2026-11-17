@@ -1,152 +1,268 @@
-"""Etapa 5 — achar o endereço CORRETO (entre vários na fatura) e estruturá-lo."""
-from __future__ import annotations
+# Etapa 5: achar o endereço CORRETO (a fatura tem vários) e separar em campos.
+#
+# Ideia: cada empresa escreve o endereço do imóvel depois de um rótulo fixo
+# (ex.: "ENDERECO DA UNIDADE CONSUMIDORA"). Achamos esse rótulo, pegamos as linhas
+# seguintes até o CEP e paramos se aparecer outro rótulo (ex.: "ENDERECO DE COBRANCA").
+# Depois um leitor específico de cada formato separa rua, número, bairro, cidade e UF.
 
 import re
-from difflib import SequenceMatcher
+from difflib import SequenceMatcher, get_close_matches
 
-from .config import COMPANIES, DECOY_LABELS, normalize
-
-_DIGIT_FIX = str.maketrans({"O": "0", "I": "1", "L": "1", "S": "5", "B": "8"})
-CEP_RE = re.compile(r"CEP[:\s]*([0-9OILSB]{5})\s*-?\s*([0-9OILSB]{3})\b")
-CEP_FALLBACK_RE = re.compile(r"\b(\d{5})\s*-?\s*(\d{3})\b")
-STREET_NUM_RE = re.compile(r"^(?P<street>.+?)\s*,\s*(?P<num>\d+[A-Z]?|S/?N)\b")
+from .config import COMPANIES, DECOY_LABELS, UFS, normalize
 
 
-def _label_score(label: str, line: str) -> float:
-    if label in line:
+# --------------------------------------------------
+# CONFIGURAÇÕES
+# --------------------------------------------------
+
+# O OCR confunde letras com números nos CEPs. Esta tabela desfaz a confusão:
+# O vira 0, I vira 1, L vira 1, S vira 5, B vira 8.
+TROCAS_DIGITOS = str.maketrans({"O": "0", "I": "1", "L": "1", "S": "5", "B": "8"})
+
+# CEP com a palavra "CEP" na frente (aceita letras parecidas com números)
+CEP_COM_ROTULO = re.compile(r"CEP[:\s]*([0-9OILSB]{5})\s*-?\s*([0-9OILSB]{3})\b")
+
+# CEP solto, só com números (usado quando a palavra "CEP" não foi lida)
+CEP_SOLTO = re.compile(r"\b(\d{5})\s*-?\s*(\d{3})\b")
+
+# "RUA X, 123" -> rua e número (aceita 123A e S/N)
+RUA_E_NUMERO = re.compile(r"^(?P<rua>.+?)\s*,\s*(?P<numero>\d+[A-Z]?|S/?N)\b")
+
+# Erros comuns do OCR numa sigla de estado (ex.: "R)" em vez de "RJ")
+TROCAS_UF = str.maketrans({")": "J", "]": "J", "}": "J", "|": "I", "1": "I", "0": "O", "5": "S"})
+
+
+def find_cep(texto):
+    # Procura um CEP no texto e devolve no formato 00000-000 (ou None se não achar).
+    texto = normalize(texto)
+
+    achou = CEP_COM_ROTULO.search(texto)
+    if achou:
+        digitos = (achou.group(1) + achou.group(2)).translate(TROCAS_DIGITOS)
+        return f"{digitos[:5]}-{digitos[5:]}"
+
+    achou = CEP_SOLTO.search(texto)
+    if achou:
+        return f"{achou.group(1)}-{achou.group(2)}"
+
+    return None
+
+
+def label_score(rotulo, linha):
+    # Quanto da linha se parece com o rótulo, de 0 a 1. Tolera erros de OCR:
+    # em vez de exigir o rótulo inteiro, medimos o maior pedaço em comum.
+    if rotulo in linha:
         return 1.0
-    m = SequenceMatcher(None, label, line, autojunk=False).find_longest_match(0, len(label), 0, len(line))
-    return m.size / len(label)
+
+    comparador = SequenceMatcher(None, rotulo, linha, autojunk=False)
+    pedaco = comparador.find_longest_match(0, len(rotulo), 0, len(linha))
+
+    return pedaco.size / len(rotulo)
 
 
-def _all_labels() -> list[str]:
-    return [c.anchor for c in COMPANIES.values()] + list(DECOY_LABELS)
+def collect_address_lines(linhas, rotulo, max_linhas=6, nota_minima=0.8):
+    # Acha o rótulo do endereço certo e junta as linhas seguintes, até o CEP.
+    # Devolve (linhas normalizadas, confiança média do OCR), ou ([], 0) se não achar o rótulo.
 
+    # 1. Normalizar o texto e dar uma nota de semelhança com o rótulo em cada linha
+    textos = [normalize(linha.text) for linha in linhas]
+    notas = [label_score(rotulo, texto) for texto in textos]
 
-def find_cep(text: str) -> str | None:
-    t = normalize(text)
-    m = CEP_RE.search(t)
-    if m:
-        digits = (m.group(1) + m.group(2)).translate(_DIGIT_FIX)
-        return f"{digits[:5]}-{digits[5:]}"
-    m = CEP_FALLBACK_RE.search(t)
-    return f"{m.group(1)}-{m.group(2)}" if m else None
-
-
-def collect_address_lines(lines, anchor: str, max_lines: int = 6, min_score: float = 0.8):
-    """Localiza o rótulo do endereço certo e coleta as linhas seguintes até o CEP.
-
-    Retorna (lista_de_linhas_normalizadas, confiança_média_do_OCR) ou ([], 0).
-    """
-    norm = [normalize(l.text) for l in lines]
-    scores = [_label_score(anchor, n) for n in norm]
-    if not scores or max(scores) < min_score:
+    if not notas or max(notas) < nota_minima:
         return [], 0.0
-    start = max(range(len(scores)), key=scores.__getitem__)
 
-    collected, confs = [], []
-    if anchor in norm[start]:  # texto na mesma linha do rótulo
-        rest = norm[start].split(anchor, 1)[1].strip(" :-")
-        if rest:
-            collected.append(rest)
-            confs.append(lines[start].conf)
+    inicio = notas.index(max(notas))   # a linha mais parecida com o rótulo
 
-    other_labels = [lb for lb in _all_labels() if lb != anchor]
-    for j in range(start + 1, min(start + 1 + max_lines, len(norm))):
-        if any(_label_score(lb, norm[j]) >= min_score for lb in other_labels):
+    coletadas = []
+    confiancas = []
+
+    # 2. Às vezes o endereço vem na mesma linha do rótulo ("ENDERECO DO IMOVEL: RUA X, 10")
+    if rotulo in textos[inicio]:
+        resto = textos[inicio].split(rotulo, 1)[1].strip(" :-")
+        if resto:
+            coletadas.append(resto)
+            confiancas.append(linhas[inicio].conf)
+
+    # 3. As linhas seguintes valem até aparecer OUTRO rótulo (ex.: endereço de cobrança) ou o CEP
+    outros_rotulos = [empresa.anchor for empresa in COMPANIES.values()] + list(DECOY_LABELS)
+    outros_rotulos = [outro for outro in outros_rotulos if outro != rotulo]
+
+    for i in range(inicio + 1, min(inicio + 1 + max_linhas, len(textos))):
+        e_outro_rotulo = any(label_score(outro, textos[i]) >= nota_minima for outro in outros_rotulos)
+        if e_outro_rotulo:
             break
-        collected.append(norm[j])
-        confs.append(lines[j].conf)
-        if find_cep(norm[j]):
+
+        coletadas.append(textos[i])
+        confiancas.append(linhas[i].conf)
+
+        if find_cep(textos[i]):   # o CEP é a última linha do endereço
             break
-    return collected, (sum(confs) / len(confs) if confs else 0.0)
+
+    media = 0.0
+    if confiancas:
+        media = sum(confiancas) / len(confiancas)
+
+    return coletadas, media
 
 
-# ---------- parsers por layout ----------
+# --------------------------------------------------
+# PEDAÇOS DO ENDEREÇO
+# --------------------------------------------------
 
-def _split_street(text: str) -> tuple[str, str]:
-    m = STREET_NUM_RE.match(text)
-    if m:
-        return m.group("street").strip(), m.group("num")
-    return text.strip(), ""
-
-
-def _find_uf(text: str) -> str:
-    from .config import UFS
-    cands = re.findall(r"(?:-|/|,)\s*([A-Z]{2})\b", text)
-    cands = [c for c in cands if c in UFS]
-    return cands[-1] if cands else ""
+def split_street_number(texto):
+    # "RUA X, 123" -> ("RUA X", "123"). Se não tiver número, devolve ("RUA X", "").
+    achou = RUA_E_NUMERO.match(texto)
+    if achou:
+        return achou.group("rua").strip(), achou.group("numero")
+    return texto.strip(), ""
 
 
+def _clean_uf(texto):
+    # Corrige ruído de OCR numa sigla de estado (ex.: "R)" vira "RJ").
+    # Devolve "" se não der para chegar numa sigla válida.
+    letras = re.sub(r"[^A-Z]", "", texto.upper().translate(TROCAS_UF))
 
-_UF_FIX = str.maketrans({")": "J", "]": "J", "}": "J", "|": "I", "1": "I", "0": "O", "5": "S"})
+    if letras in UFS:
+        return letras
 
+    if len(letras) == 2:
+        parecidas = get_close_matches(letras, sorted(UFS), n=1, cutoff=0.5)
+        if parecidas:
+            return parecidas[0]
 
-def _clean_uf(token: str) -> str:
-    """Corrige ruído de OCR em UF (ex.: 'R)' -> 'RJ'). Retorna '' se não der para validar."""
-    from difflib import get_close_matches
-    from .config import UFS
-    t = re.sub(r"[^A-Z]", "", token.upper().translate(_UF_FIX))
-    if t in UFS:
-        return t
-    m = get_close_matches(t, sorted(UFS), n=1, cutoff=0.5) if len(t) == 2 else []
-    return m[0] if m else ""
-
-
-def _split_city_uf(text: str) -> tuple[str, str]:
-    """'RIO DE JANEIRO/RJ' ou 'CAMPINAS - SP' -> (cidade, uf)."""
-    m = re.match(r"^(.*?)\s*[-/]\s*(\S{1,3})\s*$", text.strip())
-    if not m:
-        return text.strip(), ""
-    return m.group(1).strip(" -"), _clean_uf(m.group(2))
+    return ""
 
 
-def _strip_cep(text: str) -> str:
-    return re.sub(r"CEP[:\s]*[0-9OILSB]{5}\s*-?\s*[0-9OILSB]{3}", "", text).strip(" -/,")
+def _split_city_uf(texto):
+    # "RIO DE JANEIRO/RJ" ou "CAMPINAS - SP" -> (cidade, uf)
+    achou = re.match(r"^(.*?)\s*[-/]\s*(\S{1,3})\s*$", texto.strip())
+    if not achou:
+        return texto.strip(), ""
+
+    cidade = achou.group(1).strip(" -")
+    uf = _clean_uf(achou.group(2))
+    return cidade, uf
 
 
-def parse_multiline(lines: list[str]) -> dict:
-    """RUA X, 123 / BAIRRO / CIDADE - UF / CEP 00000-000"""
-    idx = next((i for i, l in enumerate(lines) if find_cep(l)), len(lines) - 1)
-    city_line = lines[idx - 1] if idx >= 1 else ""
-    bairro = lines[idx - 2] if idx >= 2 else ""
-    street_line = " ".join(lines[: max(idx - 2, 1)])
-    street, num = _split_street(street_line)
-    city, uf = _split_city_uf(city_line)
-    return dict(logradouro=street, numero=num, bairro=bairro, cidade=city, uf=uf,
-                cep=find_cep(" ".join(lines)) or "")
+def _find_uf(texto):
+    # Última sigla de estado válida que aparece depois de "-", "/" ou ","
+    candidatas = re.findall(r"(?:-|/|,)\s*([A-Z]{2})\b", texto)
+    validas = [sigla for sigla in candidatas if sigla in UFS]
+
+    if validas:
+        return validas[-1]
+    return ""
 
 
-def parse_street_bairro(lines: list[str]) -> dict:
-    """RUA X, 123 - BAIRRO / CEP 00000-000 - CIDADE/UF"""
-    first = lines[0] if lines else ""
-    head, _, bairro = first.partition(" - ")
-    street, num = _split_street(head)
-    last = lines[-1] if len(lines) > 1 else ""
-    city, uf = _split_city_uf(_strip_cep(last))
-    return dict(logradouro=street, numero=num, bairro=bairro.strip(), cidade=city, uf=uf,
-                cep=find_cep(" ".join(lines)) or "")
+def _remove_cep(texto):
+    return re.sub(r"CEP[:\s]*[0-9OILSB]{5}\s*-?\s*[0-9OILSB]{3}", "", texto).strip(" -/,")
 
 
-def parse_inline(lines: list[str]) -> dict:
-    """RUA X, 123, COMPL / BAIRRO - CIDADE - UF - CEP 00000-000"""
-    street, num = _split_street(lines[0]) if lines else ("", "")
-    last = lines[-1] if len(lines) > 1 else ""
-    parts = [p.strip() for p in _strip_cep(last).split(" - ") if p.strip()]
-    bairro = parts[0] if len(parts) > 0 else ""
-    city = parts[1] if len(parts) > 1 else ""
-    uf = _clean_uf(parts[2]) if len(parts) > 2 else _find_uf(last)
-    return dict(logradouro=street, numero=num, bairro=bairro, cidade=city, uf=uf,
-                cep=find_cep(" ".join(lines)) or "")
+def _address(linhas, linha_da_rua, bairro, cidade, uf):
+    # Monta o dicionário final (o mesmo formato para os três leitores).
+    rua, numero = split_street_number(linha_da_rua)
+    cep = find_cep(" ".join(linhas)) or ""
+
+    return {
+        "logradouro": rua,
+        "numero": numero,
+        "bairro": bairro,
+        "cidade": cidade,
+        "uf": uf,
+        "cep": cep,
+    }
 
 
-PARSERS = {"multiline": parse_multiline, "street_bairro": parse_street_bairro, "inline": parse_inline}
+# --------------------------------------------------
+# UM LEITOR POR FORMATO DE FATURA
+# --------------------------------------------------
+
+def parse_multiline(linhas):
+    # Formato da Enel, cada informação numa linha:
+    #   RUA X, 123
+    #   BAIRRO
+    #   CIDADE - UF
+    #   CEP 00000-000
+    # Usamos a linha do CEP como referência: a cidade é a de cima e o bairro, a de cima dela.
+    linha_do_cep = len(linhas) - 1
+    for i in range(len(linhas)):
+        if find_cep(linhas[i]):
+            linha_do_cep = i
+            break
+
+    linha_da_cidade = ""
+    if linha_do_cep >= 1:
+        linha_da_cidade = linhas[linha_do_cep - 1]
+
+    bairro = ""
+    if linha_do_cep >= 2:
+        bairro = linhas[linha_do_cep - 2]
+
+    # A rua pode ter quebrado em mais de uma linha: juntamos tudo que está antes do bairro
+    linha_da_rua = " ".join(linhas[: max(linha_do_cep - 2, 1)])
+
+    cidade, uf = _split_city_uf(linha_da_cidade)
+    return _address(linhas, linha_da_rua, bairro, cidade, uf)
 
 
-def extract_address(lines, company_key: str):
-    """Retorna (dict_endereco, linhas_brutas, confiança_ocr_0-1)."""
-    comp = COMPANIES[company_key]
-    raw, conf = collect_address_lines(lines, comp.anchor)
-    if not raw:
+def parse_street_bairro(linhas):
+    # Formato da Sabesp, duas linhas:
+    #   RUA X, 123 - BAIRRO
+    #   CEP 00000-000 - CIDADE/UF
+    primeira = ""
+    if linhas:
+        primeira = linhas[0]
+
+    linha_da_rua, _, bairro = primeira.partition(" - ")
+
+    ultima = ""
+    if len(linhas) > 1:
+        ultima = linhas[-1]
+
+    cidade, uf = _split_city_uf(_remove_cep(ultima))
+    return _address(linhas, linha_da_rua, bairro.strip(), cidade, uf)
+
+
+def parse_inline(linhas):
+    # Formato da Claro, duas linhas:
+    #   RUA X, 123, COMPLEMENTO
+    #   BAIRRO - CIDADE - UF - CEP 00000-000
+    ultima = ""
+    if len(linhas) > 1:
+        ultima = linhas[-1]
+
+    partes = [parte.strip() for parte in _remove_cep(ultima).split(" - ") if parte.strip()]
+
+    bairro = partes[0] if len(partes) > 0 else ""
+    cidade = partes[1] if len(partes) > 1 else ""
+
+    if len(partes) > 2:
+        uf = _clean_uf(partes[2])
+    else:
+        uf = _find_uf(ultima)
+
+    linha_da_rua = linhas[0] if linhas else ""
+    return _address(linhas, linha_da_rua, bairro, cidade, uf)
+
+
+# Qual leitor usar em cada formato (o formato de cada empresa está em config.py)
+PARSERS = {
+    "multiline": parse_multiline,
+    "street_bairro": parse_street_bairro,
+    "inline": parse_inline,
+}
+
+
+def extract_address(linhas, empresa):
+    # Devolve (endereço em campos, linhas brutas, confiança do OCR de 0 a 1).
+    # `empresa` é a chave: "enel", "sabesp" ou "claro".
+    dados = COMPANIES[empresa]
+
+    linhas_do_endereco, confianca = collect_address_lines(linhas, dados.anchor)
+    if not linhas_do_endereco:
         return {}, [], 0.0
-    return PARSERS[comp.layout](raw), raw, round(conf / 100.0, 3)
+
+    leitor = PARSERS[dados.layout]
+    endereco = leitor(linhas_do_endereco)
+
+    return endereco, linhas_do_endereco, round(confianca / 100.0, 3)

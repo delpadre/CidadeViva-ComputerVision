@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "PRACA VINTE E UM DE ABRIL",
+    "numero": "3268",
+    "bairro": "RECANTO VERDE",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "91797-283"
+  }
+}

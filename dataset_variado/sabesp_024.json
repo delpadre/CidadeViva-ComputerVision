@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA VINTE E UM DE ABRIL",
+    "numero": "6971",
+    "bairro": "PARQUE AMERICA",
+    "cidade": "BELO HORIZONTE",
+    "uf": "MG",
+    "cep": "19764-290"
+  }
+}

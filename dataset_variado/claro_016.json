@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "ALAMEDA BRASIL",
+    "numero": "6678",
+    "bairro": "RECANTO AMERICA",
+    "cidade": "CURITIBA",
+    "uf": "PR",
+    "cep": "86039-086"
+  }
+}

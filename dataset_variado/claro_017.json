@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": true,
+  "address": {
+    "logradouro": "PRACA PRIMEIRO DE MAIO",
+    "numero": "9155",
+    "bairro": "BOM RETIRO",
+    "cidade": "PORTO ALEGRE",
+    "uf": "RS",
+    "cep": "88897-421"
+  }
+}

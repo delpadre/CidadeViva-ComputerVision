@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "ESTRADA TRES DE OUTUBRO",
+    "numero": "6641",
+    "bairro": "CIDADE AMERICA",
+    "cidade": "BELEM",
+    "uf": "PA",
+    "cep": "80925-695"
+  }
+}

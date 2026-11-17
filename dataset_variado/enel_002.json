@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "TRAVESSA DAS ARARAS",
+    "numero": "7054",
+    "bairro": "BOSQUE LUZ",
+    "cidade": "FORTALEZA",
+    "uf": "CE",
+    "cep": "73118-285"
+  }
+}

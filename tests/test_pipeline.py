@@ -1,4 +1,4 @@
-"""Teste ponta a ponta com documentos sintéticos gerados na hora (seed fixa)."""
+
 import json
 import os
 import tempfile

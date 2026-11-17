@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "TRAVESSA DO COMERCIO",
+    "numero": "9180",
+    "bairro": "VILA ALVORADA",
+    "cidade": "MACEIO",
+    "uf": "AL",
+    "cep": "92911-858"
+  }
+}

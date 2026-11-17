@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "ALAMEDA DO PROGRESSO",
+    "numero": "1041",
+    "bairro": "VILA HORIZONTE",
+    "cidade": "SAO LUIS",
+    "uf": "MA",
+    "cep": "66536-268"
+  }
+}

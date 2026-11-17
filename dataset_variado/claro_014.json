@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "ALAMEDA DOS IPES",
+    "numero": "1813",
+    "bairro": "JARDIM BELA VISTA",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "63309-428"
+  }
+}

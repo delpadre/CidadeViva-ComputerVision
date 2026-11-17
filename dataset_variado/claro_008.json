@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "TRAVESSA DAS GAIVOTAS",
+    "numero": "5129",
+    "bairro": "PARQUE VERDE",
+    "cidade": "CAMPO GRANDE",
+    "uf": "MS",
+    "cep": "51295-261"
+  }
+}

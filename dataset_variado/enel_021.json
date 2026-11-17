@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "ALAMEDA DO MERCADO",
+    "numero": "6021",
+    "bairro": "PARQUE PRIMAVERA",
+    "cidade": "NATAL",
+    "uf": "RN",
+    "cep": "59561-515"
+  }
+}

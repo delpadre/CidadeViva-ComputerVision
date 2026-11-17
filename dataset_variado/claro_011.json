@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "PRACA DOS SABIAS",
+    "numero": "6767",
+    "bairro": "JARDIM EUROPA",
+    "cidade": "ARACAJU",
+    "uf": "SE",
+    "cep": "85778-713"
+  }
+}

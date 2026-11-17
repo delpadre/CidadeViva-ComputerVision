@@ -1,4 +1,4 @@
-"""Teste da página de confirmação em navegador real. Pula se Playwright/Chromium não existirem."""
+
 import json
 import os
 import threading

@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "PRACA DA REPUBLICA",
+    "numero": "2602",
+    "bairro": "SANTANA",
+    "cidade": "JOAO PESSOA",
+    "uf": "PB",
+    "cep": "43446-918"
+  }
+}

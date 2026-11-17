@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": true,
+  "address": {
+    "logradouro": "AVENIDA DA FONTE",
+    "numero": "2193",
+    "bairro": "CIDADE CAMPO BELO",
+    "cidade": "CAMPINAS",
+    "uf": "SP",
+    "cep": "19129-013"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": true,
+  "address": {
+    "logradouro": "PRACA DOS LIRIOS",
+    "numero": "3335",
+    "bairro": "RECANTO HORIZONTE",
+    "cidade": "LONDRINA",
+    "uf": "PR",
+    "cep": "86794-504"
+  }
+}

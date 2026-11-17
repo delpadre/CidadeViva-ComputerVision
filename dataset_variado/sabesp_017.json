@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "ALAMEDA BRASIL",
+    "numero": "9291",
+    "bairro": "VILA FLORESTA",
+    "cidade": "RIO BRANCO",
+    "uf": "AC",
+    "cep": "35867-892"
+  }
+}

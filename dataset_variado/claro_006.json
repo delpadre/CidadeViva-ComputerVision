@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": true,
+  "address": {
+    "logradouro": "ALAMEDA DA REPUBLICA",
+    "numero": "292",
+    "bairro": "RECANTO NOVA ERA",
+    "cidade": "CURITIBA",
+    "uf": "PR",
+    "cep": "73902-205"
+  }
+}

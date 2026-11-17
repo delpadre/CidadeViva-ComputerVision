@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA DA REPUBLICA",
+    "numero": "5692",
+    "bairro": "RECANTO CAMPO BELO",
+    "cidade": "SALVADOR",
+    "uf": "BA",
+    "cep": "79941-372"
+  }
+}

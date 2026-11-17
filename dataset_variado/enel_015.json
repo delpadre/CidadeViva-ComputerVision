@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "ESTRADA DA FONTE",
+    "numero": "6066",
+    "bairro": "MOOCA",
+    "cidade": "PALMAS",
+    "uf": "TO",
+    "cep": "30725-504"
+  }
+}

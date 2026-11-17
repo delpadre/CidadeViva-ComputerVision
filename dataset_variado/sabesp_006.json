@@ -1,0 +1,12 @@
+{
+  "company": "sabesp",
+  "hard": false,
+  "address": {
+    "logradouro": "TRAVESSA DO SOL",
+    "numero": "9371",
+    "bairro": "RECANTO EUROPA",
+    "cidade": "TERESINA",
+    "uf": "PI",
+    "cep": "20267-280"
+  }
+}

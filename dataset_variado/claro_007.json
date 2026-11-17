@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "RUA AMAZONAS",
+    "numero": "7579",
+    "bairro": "CIDADE AMERICA",
+    "cidade": "PALMAS",
+    "uf": "TO",
+    "cep": "61578-717"
+  }
+}

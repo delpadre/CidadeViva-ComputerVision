@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "AVENIDA DAS ORQUIDEAS",
+    "numero": "5991",
+    "bairro": "RECANTO PAULISTA",
+    "cidade": "PORTO VELHO",
+    "uf": "RO",
+    "cep": "54916-094"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "TRAVESSA DOS CAJUEIROS",
+    "numero": "30",
+    "bairro": "RECANTO HORIZONTE",
+    "cidade": "MANAUS",
+    "uf": "AM",
+    "cep": "98926-034"
+  }
+}

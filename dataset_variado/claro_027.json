@@ -1,0 +1,12 @@
+{
+  "company": "claro",
+  "hard": false,
+  "address": {
+    "logradouro": "ESTRADA PRIMEIRO DE MAIO",
+    "numero": "4308",
+    "bairro": "PARQUE PRIMAVERA",
+    "cidade": "JOAO PESSOA",
+    "uf": "PB",
+    "cep": "01988-051"
+  }
+}

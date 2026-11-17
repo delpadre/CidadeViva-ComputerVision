@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": true,
+  "address": {
+    "logradouro": "RUA DOS IPES",
+    "numero": "686",
+    "bairro": "JARDIM PRIMAVERA",
+    "cidade": "UBERLANDIA",
+    "uf": "MG",
+    "cep": "18444-652"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": true,
+  "address": {
+    "logradouro": "ESTRADA DA ESTACAO",
+    "numero": "1459",
+    "bairro": "LAPA",
+    "cidade": "RIO BRANCO",
+    "uf": "AC",
+    "cep": "76086-637"
+  }
+}

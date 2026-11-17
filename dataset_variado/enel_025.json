@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "PRACA DAS PALMEIRAS",
+    "numero": "2782",
+    "bairro": "VILA PAULISTA",
+    "cidade": "RIO DE JANEIRO",
+    "uf": "RJ",
+    "cep": "35127-926"
+  }
+}

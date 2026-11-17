@@ -1,0 +1,12 @@
+{
+  "company": "enel",
+  "hard": false,
+  "address": {
+    "logradouro": "ALAMEDA DOS LIRIOS",
+    "numero": "8441",
+    "bairro": "BOSQUE FLORESTA",
+    "cidade": "BOA VISTA",
+    "uf": "RR",
+    "cep": "35154-591"
+  }
+}
